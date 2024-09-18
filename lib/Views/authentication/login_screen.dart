@@ -1,5 +1,5 @@
-import 'package:coffe_app/Controllers/auth_controller.dart';
 import 'package:coffe_app/Views/authentication/signup_screen.dart';
+import 'package:coffe_app/Views/navigation/bottom_nav_bar.dart';
 import 'package:coffe_app/Views/widget/custom_button.dart';
 import 'package:coffe_app/Views/widget/custom_textfield.dart';
 import 'package:coffe_app/constant/color.dart';
@@ -17,8 +17,9 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
+TextEditingController loginEmailController = TextEditingController();
+TextEditingController loginPasswordController = TextEditingController();
 final GlobalKey<FormState> key = GlobalKey();
-var controller = Get.put(AuthController());
 
 class _LoginScreenState extends State<LoginScreen> {
   @override
@@ -51,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 22.h,
                 ),
                 CustomTextfield(
-                  controller: controller.loginEmailController,
+                  controller: loginEmailController,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Please enter email address";
@@ -75,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 22.h,
                 ),
                 CustomTextfield(
-                  controller: controller.loginPasswordController,
+                  controller: loginPasswordController,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Enter your password";
@@ -116,10 +117,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 CustomButton(
                   text: "Sign in",
                   onpressed: () {
-                    if (key.currentState!.validate()) {
-                      controller.login();
-                      print("Valid iput ");
-                    }
+                    // if (key.currentState!.validate()) {
+                    //   print("Valid iput ");
+                    // }
+                    Get.to(() => BottomNavBar());
                   },
                 ),
                 SizedBox(

@@ -43,10 +43,6 @@ class ProfileInfo extends StatelessWidget {
             ],
           ),
         ),
-        // Padding(
-        //   padding: EdgeInsets.symmetric(horizontal: 12.w),
-        //   child: Divider(),
-        // )
       ],
     );
   }

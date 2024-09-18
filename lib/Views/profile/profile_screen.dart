@@ -212,10 +212,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         height: 8.h,
                       ),
                       GestureDetector(
-                        onTap: () {
-                          FirebaseAuth.instance.signOut();
-                          Get.offAll(() => const SplashScreen());
-                        },
+                        onTap: () {},
                         child: ProfileInfo(
                             text: "Sign out",
                             image: "assets/images/signout-icon.png",

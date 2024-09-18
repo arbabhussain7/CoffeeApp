@@ -24,7 +24,7 @@ class _ManageOrderState extends State<ManageOrder> {
             children: [
               const CustomHeading(),
               SizedBox(
-                height: 33.h,
+                height: 25.h,
               ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 12.h),
@@ -48,7 +48,7 @@ class _ManageOrderState extends State<ManageOrder> {
                     children: [
                       Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 12.w, vertical: 3.h),
+                            horizontal: 12.w, vertical: 0.h),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -71,7 +71,8 @@ class _ManageOrderState extends State<ManageOrder> {
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 12.w, vertical: 3.h),
+                          horizontal: 12.w,
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -109,87 +110,81 @@ class _ManageOrderState extends State<ManageOrder> {
                                     color: blackColor.withOpacity(0.53)),
                               ),
                             ),
-                            Expanded(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  const Icon(
-                                    Icons.search,
-                                    color: Colors.transparent,
-                                  ),
-                                  SizedBox(
-                                    height: 22.h,
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return Scaffold(
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              body: Center(
-                                                child: Container(
-                                                  width: 371.w,
-                                                  height: 199.h,
-                                                  decoration: BoxDecoration(
-                                                      color: primaryColor,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20.sp)),
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      SvgIcon(
-                                                        "assets/icons/alert-icon.svg",
-                                                        width: 38.w,
-                                                        height: 38.h,
-                                                        color: whiteColor,
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                const Icon(
+                                  Icons.search,
+                                  color: Colors.transparent,
+                                ),
+                                SizedBox(
+                                  height: 22.h,
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return Scaffold(
+                                            backgroundColor: Colors.transparent,
+                                            body: Center(
+                                              child: Container(
+                                                width: 371.w,
+                                                height: 199.h,
+                                                decoration: BoxDecoration(
+                                                    color: primaryColor,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20.sp)),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    SvgIcon(
+                                                      "assets/icons/alert-icon.svg",
+                                                      width: 38.w,
+                                                      height: 38.h,
+                                                      color: whiteColor,
+                                                    ),
+                                                    SizedBox(
+                                                      height: 15.h,
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal: 87.w),
+                                                      child: Text(
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        "Can only cancel the order within 15 minutes of placing it ",
+                                                        style:
+                                                            GoogleFonts.poppins(
+                                                                fontSize: 12.sp,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                color:
+                                                                    whiteColor),
                                                       ),
-                                                      SizedBox(
-                                                        height: 15.h,
-                                                      ),
-                                                      Padding(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                                horizontal:
-                                                                    87.w),
-                                                        child: Text(
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          "Can only cancel the order within 15 minutes of placing it ",
-                                                          style: GoogleFonts
-                                                              .poppins(
-                                                                  fontSize:
-                                                                      12.sp,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400,
-                                                                  color:
-                                                                      whiteColor),
-                                                        ),
-                                                      )
-                                                    ],
-                                                  ),
+                                                    )
+                                                  ],
                                                 ),
                                               ),
-                                            );
-                                          });
-                                    },
-                                    child: Text(
-                                      "Cancel Order",
-                                      style: GoogleFonts.poppins(
-                                          decoration: TextDecoration.underline,
-                                          fontSize: 10.sp,
-                                          fontWeight: FontWeight.w400,
-                                          color: redColor),
-                                    ),
-                                  )
-                                ],
-                              ),
+                                            ),
+                                          );
+                                        });
+                                  },
+                                  child: Text(
+                                    "Cancel Order",
+                                    style: GoogleFonts.poppins(
+                                        decoration: TextDecoration.underline,
+                                        fontSize: 10.sp,
+                                        fontWeight: FontWeight.w400,
+                                        color: redColor),
+                                  ),
+                                )
+                              ],
                             )
                           ],
                         ),

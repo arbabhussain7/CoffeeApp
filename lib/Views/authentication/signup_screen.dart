@@ -1,4 +1,3 @@
-import 'package:coffe_app/Controllers/auth_controller.dart';
 import 'package:coffe_app/Views/widget/custom_button.dart';
 import 'package:coffe_app/Views/widget/custom_textfield.dart';
 import 'package:coffe_app/constant/color.dart';
@@ -17,14 +16,12 @@ class SignUpScreen extends StatefulWidget {
   State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-var controller = Get.put(AuthController());
-
 bool isPhoneValidated = false;
 final GlobalKey<FormState> key = GlobalKey();
-// TextEditingController usernameController = TextEditingController();
-// TextEditingController emailController = TextEditingController();
-// TextEditingController phoneController = TextEditingController();
-// TextEditingController passwordController = TextEditingController();
+TextEditingController usernameController = TextEditingController();
+TextEditingController emailController = TextEditingController();
+TextEditingController phoneController = TextEditingController();
+TextEditingController passwordController = TextEditingController();
 
 class _SignUpScreenState extends State<SignUpScreen> {
   @override
@@ -56,7 +53,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 height: 22.h,
               ),
               CustomTextfield(
-                controller: controller.usernameController,
+                controller: usernameController,
                 validator: (value) {
                   if (value!.isEmpty) {
                     return "Please enter your name";
@@ -79,7 +76,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 height: 22.h,
               ),
               CustomTextfield(
-                controller: controller.emailController,
+                controller: emailController,
                 validator: (value) {
                   if (value!.isEmpty) {
                     return "Please enter email address";
@@ -145,7 +142,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   width: 1.5,
                                   color: blackColor.withOpacity(0.2)))),
                       child: IntlPhoneField(
-                        controller: controller.phoneController,
+                        controller: phoneController,
                         // validator: (value) {
                         //   if (value!.isValidNumber()) {
                         //     setState(() {
@@ -188,7 +185,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 height: 22.h,
               ),
               CustomTextfield(
-                controller: controller.passwordController,
+                controller: passwordController,
                 validator: (value) {
                   if (value!.isEmpty) {
                     return "Enter your password";
@@ -209,21 +206,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
               SizedBox(
                 height: 42.h,
               ),
-              Obx(
-                () => controller.isLoading.value
-                    ? const Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : CustomButton(
-                        text: "Sign up",
-                        onpressed: () {
-                          if (key.currentState!.validate()) {
-                            controller.register();
+              CustomButton(
+                text: "Sign up",
+                onpressed: () {
+                  if (key.currentState!.validate()) {
+                    Get.to(() => SignUpScreen());
 
-                            print('Validation Successful');
-                          }
-                        },
-                      ),
+                    print('Validation Successful');
+                  }
+                },
               ),
               SizedBox(
                 height: 22.h,

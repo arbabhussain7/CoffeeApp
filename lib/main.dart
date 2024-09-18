@@ -1,4 +1,3 @@
-import 'package:coffe_app/Controllers/user_controller.dart';
 import 'package:coffe_app/Views/splash_screen/splash_screen.dart';
 import 'package:coffe_app/constant/color.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +13,6 @@ void main() async {
   );
 
   await Firebase.initializeApp();
-  Get.put(UserController());
 
   runApp(const MyApp());
 }
