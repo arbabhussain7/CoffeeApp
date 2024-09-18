@@ -2,13 +2,13 @@ import 'dart:io';
 
 import 'package:coffe_app/Controllers/user_controller.dart';
 import 'package:coffe_app/Views/widget/custom_heading.dart';
+import 'package:coffe_app/Views/widget/profile_textfield.dart';
 import 'package:coffe_app/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:svg_icon/svg_icon.dart';
 
 class ProfileDetail extends StatefulWidget {
   const ProfileDetail({super.key});
@@ -56,18 +56,6 @@ class _ProfileDetailState extends State<ProfileDetail> {
                               );
                             }),
                           ),
-                          // Obx(
-                          //   () => controller.ImagePath.isNotEmpty
-                          //       ? Image.file(
-                          //           width: 68.w,
-                          //           height: 68.h,
-                          //           File(controller.ImagePath.toString()))
-                          //       : Image.asset(
-                          //           "assets/images/profile-img.png",
-                          //           width: 68.w,
-                          //           height: 68.h,
-                          //         ),
-                          // ),
                           SizedBox(
                             width: 8.w,
                           ),
@@ -129,107 +117,40 @@ class _ProfileDetailState extends State<ProfileDetail> {
                       ),
                       Center(
                         child: Container(
-                          width: 351.w,
-                          height: 269.h,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15.r),
-                              border: Border.all(
-                                  color: blackColor.withOpacity(0.2))),
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: 25.h,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 12.w, vertical: 2.h),
-                                child: Row(
-                                  children: [
-                                    Image.asset(
-                                      "assets/images/account-img.png",
-                                      width: 24.w,
-                                      height: 24.h,
+                            width: 351.w,
+                            height: 269.h,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15.r),
+                                border: Border.all(
+                                    color: blackColor.withOpacity(0.2))),
+                            child: Column(
+                              children: [
+                                CustomProfileTextFormField(
+                                    inputType: TextInputType.name,
+                                    iconImage: Image.asset(
+                                      "assets/images/person-img.png",
+                                      width: 16.w,
+                                      height: 16.h,
                                     ),
-                                    SizedBox(
-                                      width: 12.w,
+                                    text: controller.user['name']),
+                                CustomProfileTextFormField(
+                                    inputType: TextInputType.number,
+                                    iconImage: Image.asset(
+                                      "assets/images/call-icon.png",
+                                      width: 16.w,
+                                      height: 16.h,
                                     ),
-                                    Text(
-                                      controller.user['name'],
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 12.sp,
-                                          color: blackColor,
-                                          fontWeight: FontWeight.w400),
+                                    text: controller.user['phoneNumber']),
+                                CustomProfileTextFormField(
+                                    inputType: TextInputType.emailAddress,
+                                    iconImage: Image.asset(
+                                      "assets/images/emails-icon-img.png",
+                                      width: 16.w,
+                                      height: 16.h,
                                     ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 12.w),
-                                child: const Divider(),
-                              ),
-                              SizedBox(
-                                height: 25.h,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 12.w, vertical: 2.h),
-                                child: Row(
-                                  children: [
-                                    SvgIcon(
-                                      "assets/icons/call-icon.svg",
-                                      width: 18.w,
-                                      height: 17.h,
-                                    ),
-                                    SizedBox(
-                                      width: 12.w,
-                                    ),
-                                    Text(
-                                      controller.user['phoneNumber'],
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 12.sp,
-                                          color: blackColor,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 12.w),
-                                child: const Divider(),
-                              ),
-                              SizedBox(
-                                height: 25.h,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 12.w, vertical: 2.h),
-                                child: Row(
-                                  children: [
-                                    SvgIcon(
-                                      "assets/icons/email-icons.svg",
-                                      width: 18.w,
-                                      height: 14.h,
-                                    ),
-                                    SizedBox(
-                                      width: 12.w,
-                                    ),
-                                    Text(
-                                      controller.user['email'],
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 12.sp,
-                                          color: blackColor,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 12.w),
-                                child: const Divider(),
-                              ),
-                            ],
-                          ),
-                        ),
+                                    text: controller.user['email'])
+                              ],
+                            )),
                       ),
                     ],
                   ),
