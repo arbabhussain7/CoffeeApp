@@ -1,4 +1,4 @@
-import 'package:coffe_app/Controllers/auth_controller.dart';
+import 'package:coffe_app/Views/authentication/controllers/auth_controller.dart';
 import 'package:coffe_app/Views/widget/custom_button.dart';
 import 'package:coffe_app/Views/widget/custom_textfield.dart';
 import 'package:coffe_app/constant/color.dart';
@@ -21,10 +21,6 @@ var controller = Get.put(AuthController());
 
 bool isPhoneValidated = false;
 final GlobalKey<FormState> key = GlobalKey();
-// TextEditingController usernameController = TextEditingController();
-// TextEditingController emailController = TextEditingController();
-// TextEditingController phoneController = TextEditingController();
-// TextEditingController passwordController = TextEditingController();
 
 class _SignUpScreenState extends State<SignUpScreen> {
   @override
@@ -32,7 +28,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Form(
-          key: key, // Assign the GlobalKey here for validation
+          key: key,
           child: Column(
             children: [
               Padding(
@@ -146,18 +142,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   color: blackColor.withOpacity(0.2)))),
                       child: IntlPhoneField(
                         controller: controller.phoneController,
-                        // validator: (value) {
-                        //   if (value!.isValidNumber()) {
-                        //     setState(() {
-                        //       isPhoneValidated = true;
-                        //     });
-                        //   } else {
-                        //     setState(() {
-                        //       isPhoneValidated = false;
-                        //     });
-                        //   }
-                        //   return null;
-                        // },
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(top: 12.h),
                             border: InputBorder.none,

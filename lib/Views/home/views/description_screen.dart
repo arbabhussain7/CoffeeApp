@@ -1,4 +1,4 @@
-import 'package:coffe_app/Views/order_screen.dart';
+import 'package:coffe_app/Views/order/views/order_screen.dart';
 import 'package:coffe_app/constant/color.dart';
 import 'package:coffe_app/constant/list.dart';
 import 'package:flutter/material.dart';

@@ -9,10 +9,14 @@ class CustomProfileTextFormField extends StatelessWidget {
     required this.iconImage,
     required this.text,
     required this.inputType,
+    this.readonly = false,
+    required this.controller,
   });
   String text;
   final Image iconImage;
   final TextInputType inputType;
+  final TextEditingController controller;
+  bool readonly;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,6 +25,8 @@ class CustomProfileTextFormField extends StatelessWidget {
           height: 5.h,
         ),
         TextFormField(
+          readOnly: readonly,
+          controller: controller,
           style: GoogleFonts.poppins(
               fontSize: 12.sp, fontWeight: FontWeight.w400, color: blackColor),
           decoration: InputDecoration(

@@ -1,4 +1,4 @@
-import 'package:coffe_app/Views/authentication/login_screen.dart';
+import 'package:coffe_app/Views/authentication/views/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

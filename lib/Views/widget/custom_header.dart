@@ -1,7 +1,8 @@
-import 'package:coffe_app/Controllers/user_controller.dart';
-import 'package:coffe_app/Views/cart_screen.dart';
-import 'package:coffe_app/Views/notification_screen.dart';
-import 'package:coffe_app/Views/profile/profile_screen.dart';
+import 'package:coffe_app/Views/authentication/controllers/user_controller.dart';
+import 'package:coffe_app/Views/cart/views/cart_screen.dart';
+import 'package:coffe_app/Views/notification/views/notification_screen.dart';
+
+import 'package:coffe_app/Views/profile/views/profile_screen.dart';
 import 'package:coffe_app/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

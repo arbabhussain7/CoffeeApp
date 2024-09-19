@@ -1,5 +1,5 @@
-import 'package:coffe_app/Views/payment.dart';
-import 'package:coffe_app/Views/payment_detail.dart';
+import 'package:coffe_app/Views/payment/views/payment.dart';
+import 'package:coffe_app/Views/payment/views/payment_detail.dart';
 import 'package:coffe_app/Views/widget/custom_button.dart';
 import 'package:coffe_app/Views/widget/custom_heading.dart';
 import 'package:coffe_app/constant/color.dart';

@@ -1,5 +1,5 @@
-import 'package:coffe_app/Controllers/auth_controller.dart';
-import 'package:coffe_app/Views/authentication/signup_screen.dart';
+import 'package:coffe_app/Views/authentication/controllers/auth_controller.dart';
+import 'package:coffe_app/Views/authentication/views/signup_screen.dart';
 import 'package:coffe_app/Views/widget/custom_button.dart';
 import 'package:coffe_app/Views/widget/custom_textfield.dart';
 import 'package:coffe_app/constant/color.dart';

@@ -1,7 +1,8 @@
-import 'package:coffe_app/Views/Home/home_screen.dart';
-import 'package:coffe_app/Views/favorite_screen.dart';
-import 'package:coffe_app/Views/history_screen.dart';
-import 'package:coffe_app/Views/reward_screen.dart';
+import 'package:coffe_app/Views/Home/screens/home_screen.dart';
+import 'package:coffe_app/Views/favorite/views/favorite_screen.dart';
+import 'package:coffe_app/Views/history/views/history_screen.dart';
+import 'package:coffe_app/Views/reward/views/reward_screen.dart';
+
 import 'package:coffe_app/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:coffe_app/Controllers/user_controller.dart';
-import 'package:coffe_app/Views/Home/home_screen.dart';
+import 'package:coffe_app/Views/authentication/controllers/user_controller.dart';
+import 'package:coffe_app/Views/Home/screens/home_screen.dart';
 import 'package:coffe_app/Views/navigation/bottom_nav_bar.dart';
 import 'package:coffe_app/constant/color.dart';
 import 'package:firebase_auth/firebase_auth.dart';

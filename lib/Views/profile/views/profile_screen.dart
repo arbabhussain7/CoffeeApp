@@ -1,5 +1,5 @@
-import 'package:coffe_app/Views/profile/profile_detail.dart';
-import 'package:coffe_app/Views/splash_screen/splash_screen.dart';
+import 'package:coffe_app/Views/profile/views/profile_detail.dart';
+import 'package:coffe_app/Views/splash_screen/views/splash_screen.dart';
 import 'package:coffe_app/Views/widget/custom_heading.dart';
 import 'package:coffe_app/Views/widget/profile_info.dart';
 import 'package:coffe_app/constant/color.dart';

@@ -1,5 +1,5 @@
-import 'package:coffe_app/Controllers/user_controller.dart';
-import 'package:coffe_app/Views/splash_screen/splash_screen.dart';
+import 'package:coffe_app/Views/authentication/controllers/user_controller.dart';
+import 'package:coffe_app/Views/splash_screen/views/splash_screen.dart';
 import 'package:coffe_app/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
