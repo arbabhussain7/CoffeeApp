@@ -1,22 +1,17 @@
-import 'package:coffe_app/Views/Home/screens/description_screen.dart';
-import 'package:coffe_app/Views/widget/custom_header.dart';
+import 'package:coffe_app/Views/home/controllers/home_controller.dart';
+import 'package:coffe_app/Views/home/views/description_screen.dart';
 import 'package:coffe_app/constant/color.dart';
 import 'package:coffe_app/constant/list.dart';
+import 'package:coffe_app/widget/custom_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:svg_icon/svg_icon.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends GetView<HomeController> {
   const HomeScreen({super.key});
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  int SelectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -171,28 +166,30 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemCount: listOfCategories.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, int index) {
-                    bool isSelected = SelectedIndex == index;
-                    return GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          SelectedIndex = index;
-                        });
-                      },
-                      child: Container(
-                        width: 78.w,
-                        height: 35.h,
-                        decoration: BoxDecoration(
-                            color: isSelected ? primaryColor : whiteColor,
-                            border: Border.all(color: primaryColor),
-                            borderRadius: BorderRadius.circular(15.r)),
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            listOfCategories[index],
-                            style: GoogleFonts.poppins(
-                                fontSize: 10.sp,
-                                fontWeight: FontWeight.w400,
-                                color: isSelected ? whiteColor : blackColor),
+                    // controller.isSelectedIndexs == index;
+                    return Obx(
+                      () => GestureDetector(
+                        onTap: () => controller.isSelectedIndex(index),
+                        child: Container(
+                          width: 78.w,
+                          height: 35.h,
+                          decoration: BoxDecoration(
+                              color: controller.isSelectedIndexs == index
+                                  ? primaryColor
+                                  : whiteColor,
+                              border: Border.all(color: primaryColor),
+                              borderRadius: BorderRadius.circular(15.r)),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              listOfCategories[index],
+                              style: GoogleFonts.poppins(
+                                  fontSize: 10.sp,
+                                  fontWeight: FontWeight.w400,
+                                  color: controller.isSelectedIndexs == index
+                                      ? whiteColor
+                                      : blackColor),
+                            ),
                           ),
                         ),
                       ),
@@ -226,7 +223,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemBuilder: (BuildContext context, snapshot) {
                       return GestureDetector(
                         onTap: () {
-                          Get.to(() => const DescriptionScreen());
+                          Get.to(() => DescriptionScreen());
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(5.0),

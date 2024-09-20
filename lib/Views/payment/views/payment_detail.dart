@@ -1,7 +1,7 @@
 import 'package:coffe_app/Views/order/views/manage_order.dart';
-import 'package:coffe_app/Views/widget/custom_heading.dart';
 import 'package:coffe_app/constant/color.dart';
 import 'package:coffe_app/constant/list.dart';
+import 'package:coffe_app/widget/custom_heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -9,14 +9,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:svg_icon/svg_icon.dart';
 
-class PaymentDetail extends StatefulWidget {
+class PaymentDetail extends StatelessWidget {
   const PaymentDetail({super.key});
 
-  @override
-  State<PaymentDetail> createState() => _PaymentDetailState();
-}
-
-class _PaymentDetailState extends State<PaymentDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

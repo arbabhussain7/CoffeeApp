@@ -1,7 +1,8 @@
 import 'package:coffe_app/Views/authentication/controllers/auth_controller.dart';
-import 'package:coffe_app/Views/widget/custom_button.dart';
-import 'package:coffe_app/Views/widget/custom_textfield.dart';
+
 import 'package:coffe_app/constant/color.dart';
+import 'package:coffe_app/widget/custom_button.dart';
+import 'package:coffe_app/widget/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -10,25 +11,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:svg_icon/svg_icon.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class SignUpScreen extends GetView<AuthController> {
+  SignUpScreen({super.key});
+  bool isPhoneValidated = false;
+  final GlobalKey<FormState> key1 = GlobalKey();
 
-  @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
-}
-
-var controller = Get.put(AuthController());
-
-bool isPhoneValidated = false;
-final GlobalKey<FormState> key = GlobalKey();
-
-class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Form(
-          key: key,
+          key: key1,
           child: Column(
             children: [
               Padding(
@@ -201,7 +194,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     : CustomButton(
                         text: "Sign up",
                         onpressed: () {
-                          if (key.currentState!.validate()) {
+                          if (key1!.currentState!.validate()) {
                             controller.register();
 
                             print('Validation Successful');

@@ -1,18 +1,13 @@
-import 'package:coffe_app/Views/widget/custom_header.dart';
-import 'package:coffe_app/Views/widget/custom_order.dart';
 import 'package:coffe_app/constant/color.dart';
+import 'package:coffe_app/widget/custom_header.dart';
+import 'package:coffe_app/widget/custom_order.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HistoryScreen extends StatefulWidget {
+class HistoryScreen extends StatelessWidget {
   const HistoryScreen({super.key});
 
-  @override
-  State<HistoryScreen> createState() => _HistoryScreenState();
-}
-
-class _HistoryScreenState extends State<HistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

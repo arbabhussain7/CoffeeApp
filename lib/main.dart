@@ -1,5 +1,6 @@
 import 'package:coffe_app/Views/authentication/controllers/user_controller.dart';
 import 'package:coffe_app/Views/splash_screen/views/splash_screen.dart';
+import 'package:coffe_app/binding/binding_screen.dart';
 import 'package:coffe_app/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         builder: (_, child) {
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
+            initialBinding: BindingScreen(),
             title: 'First Method',
             theme: ThemeData(
               scaffoldBackgroundColor: whiteColor,

@@ -1,3 +1,4 @@
+import 'package:coffe_app/Views/home/controllers/home_controller.dart';
 import 'package:coffe_app/Views/order/views/order_screen.dart';
 import 'package:coffe_app/constant/color.dart';
 import 'package:coffe_app/constant/list.dart';
@@ -6,36 +7,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DescriptionScreen extends StatefulWidget {
-  const DescriptionScreen({super.key});
+class DescriptionScreen extends GetView<HomeController> {
+  DescriptionScreen({super.key});
 
-  @override
-  State<DescriptionScreen> createState() => _DescriptionScreenState();
-}
-
-int selectedSizeIndex = 1;
-int selectedOptions = 1;
-int isSelectedOptions = 1;
-int isSelected = 0;
-int selectedOption = 0;
-int isSelectedRadio = 0;
-
-List<Map<String, dynamic>> itemsList = [
-  {'name': 'Vanilla Syrup', 'price': 1.5},
-  {'name': 'Caramel Syrup', 'price': 1.5},
-  {'name': 'Whipped Cream', 'price': 1.5},
-  {'name': 'Sprinkles', 'price': 1.5},
-];
-
-List<bool> isSelectedButton = [];
-
-@override
-void initState() {
-  initState();
-  isSelectedButton = List.generate(itemsList.length, (index) => false);
-}
-
-class _DescriptionScreenState extends State<DescriptionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -189,40 +163,41 @@ class _DescriptionScreenState extends State<DescriptionScreen> {
                     scrollDirection: Axis.horizontal,
                     itemCount: listOfItems.length,
                     itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedSizeIndex = index;
-                          });
-                        },
-                        child: Container(
-                          width: 97.w,
-                          height: 44.h,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(
-                                20,
-                              ),
-                              color: selectedSizeIndex == index
-                                  ? primaryColor
-                                  : null),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                listOfItems[index],
-                                style: GoogleFonts.poppins(
-                                    fontSize: 10.sp,
-                                    fontWeight: FontWeight.w400,
-                                    color: selectedSizeIndex == index
-                                        ? whiteColor
-                                        : blackColor.withOpacity(0.5)),
-                              ),
-                              Image.asset(
-                                "assets/images/cup-coffer-img.png",
-                                width: 17.w,
-                                height: 25.h,
-                              )
-                            ],
+                      return Obx(
+                        () => GestureDetector(
+                          onTap: () => controller.selectedIndex(index),
+                          child: Container(
+                            width: 97.w,
+                            height: 44.h,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                  20,
+                                ),
+                                color:
+                                    controller.selectedSizeIndex.value == index
+                                        ? primaryColor
+                                        : null),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  listOfItems[index],
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 10.sp,
+                                      fontWeight: FontWeight.w400,
+                                      color:
+                                          controller.selectedSizeIndex.value ==
+                                                  index
+                                              ? whiteColor
+                                              : blackColor.withOpacity(0.5)),
+                                ),
+                                Image.asset(
+                                  "assets/images/cup-coffer-img.png",
+                                  width: 17.w,
+                                  height: 25.h,
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       );
@@ -254,55 +229,55 @@ class _DescriptionScreenState extends State<DescriptionScreen> {
               child: ListView.separated(
                 itemCount: listOfTopping.length,
                 itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        isSelectedOptions = index;
-                      });
-                      print(index);
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 12.w),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                width: 23.w,
-                                height: 23.h,
-                                padding: const EdgeInsets.all(6),
-                                decoration: BoxDecoration(
-                                    color: blackColor.withOpacity(0.05),
-                                    shape: BoxShape.circle),
-                                child: Container(
-                                    width: 11.w,
-                                    height: 11.h,
-                                    decoration: BoxDecoration(
-                                        color: isSelectedOptions == index
-                                            ? primaryColor
-                                            : null,
-                                        shape: BoxShape.circle)),
-                              ),
-                              SizedBox(
-                                width: 12.w,
-                              ),
-                              Text(
-                                listOfTopping[index],
-                                style: GoogleFonts.poppins(
-                                    fontSize: 12, color: blackColor),
-                              ),
-                            ],
-                          ),
-                          Text(
-                            "+\$1.5",
-                            style: GoogleFonts.poppins(
-                                fontSize: 12,
-                                color: isSelectedOptions == index
-                                    ? greenColor
-                                    : blackColor),
-                          ),
-                        ],
+                  return Obx(
+                    () => GestureDetector(
+                      onTap: () => controller.isSelectedOption(index),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 12.w),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                  width: 23.w,
+                                  height: 23.h,
+                                  padding: const EdgeInsets.all(6),
+                                  decoration: BoxDecoration(
+                                      color: blackColor.withOpacity(0.05),
+                                      shape: BoxShape.circle),
+                                  child: Container(
+                                      width: 11.w,
+                                      height: 11.h,
+                                      decoration: BoxDecoration(
+                                          color: controller.isSelectedOptions
+                                                      .value ==
+                                                  index
+                                              ? primaryColor
+                                              : null,
+                                          shape: BoxShape.circle)),
+                                ),
+                                SizedBox(
+                                  width: 12.w,
+                                ),
+                                Text(
+                                  listOfTopping[index],
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 12, color: blackColor),
+                                ),
+                              ],
+                            ),
+                            Text(
+                              "+\$1.5",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 12,
+                                  color: controller.isSelectedOptions.value ==
+                                          index
+                                      ? greenColor
+                                      : blackColor),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );
@@ -349,30 +324,30 @@ class _DescriptionScreenState extends State<DescriptionScreen> {
                   itemCount: listOfText.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          isSelected = index;
-                        });
-                      },
-                      child: Container(
-                        width: 121.w,
-                        height: 35.h,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: brownAccentColor),
-                            color: isSelected == index ? primaryColor : null,
-                            borderRadius: BorderRadius.circular(15.r)),
-                        child: Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              listOfText[index],
-                              style: GoogleFonts.poppins(
-                                  fontSize: 10.sp,
-                                  fontWeight: FontWeight.w400,
-                                  color: isSelected == index
-                                      ? whiteColor
-                                      : blackColor),
-                            )),
+                    return Obx(
+                      () => GestureDetector(
+                        onTap: () => controller.isSelected(index),
+                        child: Container(
+                          width: 121.w,
+                          height: 35.h,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: brownAccentColor),
+                              color: controller.isSelecteds.value == index
+                                  ? primaryColor
+                                  : null,
+                              borderRadius: BorderRadius.circular(15.r)),
+                          child: Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                listOfText[index],
+                                style: GoogleFonts.poppins(
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.w400,
+                                    color: controller.isSelecteds.value == index
+                                        ? whiteColor
+                                        : blackColor),
+                              )),
+                        ),
                       ),
                     );
                   },
@@ -389,42 +364,40 @@ class _DescriptionScreenState extends State<DescriptionScreen> {
               child: ListView.separated(
                 itemCount: listOfitemstext.length,
                 itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedOption = index;
-                      });
-                      print(index);
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 12.w),
-                      child: Row(
-                        children: [
-                          Container(
-                            width: 23.w,
-                            height: 23.h,
-                            padding: const EdgeInsets.all(6),
-                            decoration: BoxDecoration(
-                                color: blackColor.withOpacity(0.05),
-                                shape: BoxShape.circle),
-                            child: Container(
-                                width: 11.w,
-                                height: 11.h,
-                                decoration: BoxDecoration(
-                                    color: selectedOption == index
-                                        ? primaryColor
-                                        : null,
-                                    shape: BoxShape.circle)),
-                          ),
-                          SizedBox(
-                            width: 12.w,
-                          ),
-                          Text(
-                            listOfitemstext[index],
-                            style: GoogleFonts.poppins(
-                                fontSize: 12, color: blackColor),
-                          )
-                        ],
+                  return Obx(
+                    () => GestureDetector(
+                      onTap: () => controller.selectedOption(index),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 12.w),
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 23.w,
+                              height: 23.h,
+                              padding: const EdgeInsets.all(6),
+                              decoration: BoxDecoration(
+                                  color: blackColor.withOpacity(0.05),
+                                  shape: BoxShape.circle),
+                              child: Container(
+                                  width: 11.w,
+                                  height: 11.h,
+                                  decoration: BoxDecoration(
+                                      color: controller.selectedOptions.value ==
+                                              index
+                                          ? primaryColor
+                                          : null,
+                                      shape: BoxShape.circle)),
+                            ),
+                            SizedBox(
+                              width: 12.w,
+                            ),
+                            Text(
+                              listOfitemstext[index],
+                              style: GoogleFonts.poppins(
+                                  fontSize: 12, color: blackColor),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   );

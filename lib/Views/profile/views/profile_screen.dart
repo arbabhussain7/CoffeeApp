@@ -1,24 +1,20 @@
+import 'package:coffe_app/Views/authentication/controllers/user_controller.dart';
+import 'package:coffe_app/Views/profile/controllers/profile_controller.dart';
 import 'package:coffe_app/Views/profile/views/profile_detail.dart';
 import 'package:coffe_app/Views/splash_screen/views/splash_screen.dart';
-import 'package:coffe_app/Views/widget/custom_heading.dart';
-import 'package:coffe_app/Views/widget/profile_info.dart';
+
 import 'package:coffe_app/constant/color.dart';
+import 'package:coffe_app/widget/custom_heading.dart';
+import 'package:coffe_app/widget/profile_info.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+class ProfileScreen extends GetView<ProfileController> {
+  ProfileScreen({super.key});
 
-  @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
-}
-
-bool isSelectedoption = false;
-
-class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,9 +64,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 5.h),
                         child: GestureDetector(
-                          onTap: () {
-                            Get.to(() => const ProfileDetail());
-                          },
+                          onTap: controller.naviagteToProfileScreen,
                           child: ProfileInfo(
                             text: "Account Details ",
                             image: "assets/images/account-img.png",
@@ -163,16 +157,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: FittedBox(
                           fit: BoxFit.cover,
                           child: Switch(
+                              value: controller.isSelectedOption.value,
                               materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,
                               activeColor: whiteColor,
                               activeTrackColor: primaryColor,
-                              value: isSelectedoption,
-                              onChanged: (value) {
-                                setState(() {
-                                  isSelectedoption = value;
-                                });
-                              }),
+                              // value: isSelectedoption,
+
+                              onChanged: controller.switchChange),
                         ),
                       )
                     ],

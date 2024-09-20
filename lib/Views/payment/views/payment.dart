@@ -1,19 +1,14 @@
+import 'package:coffe_app/Views/payment/controllers/payment_controller.dart';
 import 'package:coffe_app/constant/color.dart';
 import 'package:coffe_app/constant/list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PaymentScreen extends StatefulWidget {
-  const PaymentScreen({super.key});
+class PaymentScreen extends GetView<PaymentController> {
+  PaymentScreen({super.key});
 
-  @override
-  State<PaymentScreen> createState() => _PaymentScreenState();
-}
-
-int selectedOption = 1;
-
-class _PaymentScreenState extends State<PaymentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,83 +52,84 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   child: ListView.separated(
                     itemCount: listOfpayment.length,
                     itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedOption = index;
-                          });
-                          print(index);
-                        },
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 23.w,
-                              height: 23.h,
-                              padding: const EdgeInsets.all(6),
-                              decoration: BoxDecoration(
-                                  color: blackColor.withOpacity(0.05),
-                                  shape: BoxShape.circle),
-                              child: Container(
-                                  width: 11.w,
-                                  height: 11.h,
-                                  decoration: BoxDecoration(
-                                      color: selectedOption == index
-                                          ? primaryColor
-                                          : null,
-                                      shape: BoxShape.circle)),
-                            ),
-                            SizedBox(
-                              width: 12.w,
-                            ),
-                            Expanded(
-                              child: Container(
-                                width: 350.w,
-                                height: 64.h,
-                                padding: EdgeInsets.symmetric(horizontal: 22.w),
+                      return Obx(
+                        () => GestureDetector(
+                          onTap: () => controller.selectedOption(index),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 23.w,
+                                height: 23.h,
+                                padding: const EdgeInsets.all(6),
                                 decoration: BoxDecoration(
                                     color: blackColor.withOpacity(0.05),
-                                    borderRadius: BorderRadius.circular(15.r)),
-                                child: Row(
-                                  children: [
-                                    Image.asset(listOfpayment[index]),
-                                    SizedBox(
-                                      width: 18.w,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          listOfPaymentTexts[index],
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w400,
-                                              color: blackColor),
-                                        ),
-                                        Text(
-                                          "**** **** **** 3455",
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 8.sp,
-                                              fontWeight: FontWeight.w400,
-                                              color:
-                                                  blackColor.withOpacity(0.53)),
-                                        ),
-                                        Text(
-                                          "Active",
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 8.sp,
-                                              fontWeight: FontWeight.w400,
-                                              color: greenColor),
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                ),
+                                    shape: BoxShape.circle),
+                                child: Container(
+                                    width: 11.w,
+                                    height: 11.h,
+                                    decoration: BoxDecoration(
+                                        color:
+                                            controller.selectedOptions.value ==
+                                                    index
+                                                ? primaryColor
+                                                : null,
+                                        shape: BoxShape.circle)),
                               ),
-                            )
-                          ],
+                              SizedBox(
+                                width: 12.w,
+                              ),
+                              Expanded(
+                                child: Container(
+                                  width: 350.w,
+                                  height: 64.h,
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 22.w),
+                                  decoration: BoxDecoration(
+                                      color: blackColor.withOpacity(0.05),
+                                      borderRadius:
+                                          BorderRadius.circular(15.r)),
+                                  child: Row(
+                                    children: [
+                                      Image.asset(listOfpayment[index]),
+                                      SizedBox(
+                                        width: 18.w,
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            listOfPaymentTexts[index],
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.w400,
+                                                color: blackColor),
+                                          ),
+                                          Text(
+                                            "**** **** **** 3455",
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 8.sp,
+                                                fontWeight: FontWeight.w400,
+                                                color: blackColor
+                                                    .withOpacity(0.53)),
+                                          ),
+                                          Text(
+                                            "Active",
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 8.sp,
+                                                fontWeight: FontWeight.w400,
+                                                color: greenColor),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       );
                     },

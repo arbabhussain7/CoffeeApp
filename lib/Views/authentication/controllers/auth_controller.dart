@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coffe_app/Views/authentication/controllers/user_controller.dart';
-import 'package:coffe_app/Views/Home/screens/home_screen.dart';
+import 'package:coffe_app/Views/home/views/home_screen.dart';
 import 'package:coffe_app/Views/navigation/bottom_nav_bar.dart';
 import 'package:coffe_app/constant/color.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -43,7 +43,7 @@ class AuthController extends GetxController {
       );
       await createUser(credentials.user!.uid);
 
-      Get.off(() => const HomeScreen());
+      Get.offAll(() => const HomeScreen());
     } catch (e) {
       Get.snackbar("About User ", "User Message ",
           backgroundColor: primaryColor,
@@ -71,7 +71,7 @@ class AuthController extends GetxController {
           email: loginEmailController.text,
           password: loginPasswordController.text);
       userController.getUser();
-      Get.offAll(() => const BottomNavBar());
+      Get.offAll(() => BottomNavBar());
     } catch (e) {
       Get.snackbar("Login ", "User ",
           backgroundColor: primaryColor,

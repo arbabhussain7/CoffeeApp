@@ -1,6 +1,7 @@
 import 'package:coffe_app/Views/authentication/controllers/user_controller.dart';
 import 'package:coffe_app/Views/cart/views/cart_screen.dart';
 import 'package:coffe_app/Views/notification/views/notification_screen.dart';
+import 'package:coffe_app/Views/profile/controllers/profile_controller.dart';
 
 import 'package:coffe_app/Views/profile/views/profile_screen.dart';
 import 'package:coffe_app/constant/color.dart';
@@ -10,17 +11,10 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:svg_icon/svg_icon.dart';
 
-class CustomHeader extends StatefulWidget {
+class CustomHeader extends GetView<ProfileController> {
   CustomHeader({
     super.key,
   });
-
-  @override
-  State<CustomHeader> createState() => _CustomHeaderState();
-}
-
-class _CustomHeaderState extends State<CustomHeader> {
-  var controller = Get.find<UserController>();
   var imageUrl = "".obs;
   @override
   Widget build(BuildContext context) {
@@ -29,10 +23,11 @@ class _CustomHeaderState extends State<CustomHeader> {
         children: [
           GestureDetector(
             onTap: () {
-              Get.to(() => const ProfileScreen());
+              Get.to(() => ProfileScreen());
             },
             child: CircleAvatar(
-                backgroundImage: NetworkImage(controller.user["imageUrl"])),
+                backgroundImage:
+                    NetworkImage(controller.userController.user["imageUrl"])),
           ),
           SizedBox(
             width: 12.w,
@@ -41,7 +36,7 @@ class _CustomHeaderState extends State<CustomHeader> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                controller.user['name'],
+                controller.userController.user['name'],
                 style: GoogleFonts.poppins(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w400,

@@ -1,8 +1,9 @@
 import 'package:coffe_app/Views/authentication/controllers/auth_controller.dart';
 import 'package:coffe_app/Views/authentication/views/signup_screen.dart';
-import 'package:coffe_app/Views/widget/custom_button.dart';
-import 'package:coffe_app/Views/widget/custom_textfield.dart';
+
 import 'package:coffe_app/constant/color.dart';
+import 'package:coffe_app/widget/custom_button.dart';
+import 'package:coffe_app/widget/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -10,17 +11,9 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:svg_icon/svg_icon.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends GetView<AuthController> {
   const LoginScreen({super.key});
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-final GlobalKey<FormState> key = GlobalKey();
-var controller = Get.put(AuthController());
-
-class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,7 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(() => const SignUpScreen());
+                    Get.to(() => SignUpScreen());
                   },
                   child: RichText(
                       text: TextSpan(
@@ -154,3 +147,6 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
+
+final GlobalKey<FormState> key = GlobalKey();
+var controller = Get.put(AuthController());

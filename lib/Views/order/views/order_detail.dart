@@ -1,17 +1,12 @@
-import 'package:coffe_app/Views/widget/custom_heading.dart';
 import 'package:coffe_app/constant/color.dart';
+import 'package:coffe_app/widget/custom_heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class OrderDetail extends StatefulWidget {
+class OrderDetail extends StatelessWidget {
   const OrderDetail({super.key});
 
-  @override
-  State<OrderDetail> createState() => _OrderDetailState();
-}
-
-class _OrderDetailState extends State<OrderDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

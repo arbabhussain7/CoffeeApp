@@ -1,26 +1,19 @@
 import 'dart:io';
 
-import 'package:coffe_app/Views/authentication/controllers/user_controller.dart';
-import 'package:coffe_app/Views/widget/custom_button.dart';
-import 'package:coffe_app/Views/widget/custom_heading.dart';
-import 'package:coffe_app/Views/widget/profile_textfield.dart';
+import 'package:coffe_app/Views/profile/controllers/profile_controller.dart';
+
 import 'package:coffe_app/constant/color.dart';
+import 'package:coffe_app/widget/custom_button.dart';
+import 'package:coffe_app/widget/custom_heading.dart';
+import 'package:coffe_app/widget/profile_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ProfileDetail extends StatefulWidget {
+class ProfileDetail extends GetView<ProfileController> {
   const ProfileDetail({super.key});
 
-  @override
-  State<ProfileDetail> createState() => _ProfileDetailState();
-}
-
-var controller = Get.find<UserController>();
-
-class _ProfileDetailState extends State<ProfileDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +51,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
                                         : null,
                                     child: controller.ImagePath.isEmpty
                                         ? Image.asset(
-                                            "assets/images/profile-img.png") // Fallback icon when no image is provided
+                                            "assets/images/profile-img.png")
                                         : null,
                                   );
                                 }),
@@ -71,7 +64,7 @@ class _ProfileDetailState extends State<ProfileDetail> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  controller.user['name'],
+                                  controller.userController.user['name'],
                                   style: GoogleFonts.poppins(
                                       fontSize: 16.sp,
                                       fontWeight: FontWeight.w400,
@@ -132,32 +125,38 @@ class _ProfileDetailState extends State<ProfileDetail> {
                               child: Column(
                                 children: [
                                   CustomProfileTextFormField(
-                                      controller: controller.nameController,
+                                      controller: controller
+                                          .userController.nameController,
                                       inputType: TextInputType.name,
                                       iconImage: Image.asset(
                                         "assets/images/person-img.png",
                                         width: 16.w,
                                         height: 16.h,
                                       ),
-                                      text: controller.user['name']),
+                                      text: controller
+                                          .userController.user['name']),
                                   CustomProfileTextFormField(
-                                      controller: controller.phoneController,
+                                      controller: controller
+                                          .userController.phoneController,
                                       inputType: TextInputType.number,
                                       iconImage: Image.asset(
                                         "assets/images/call-icon.png",
                                         width: 16.w,
                                         height: 16.h,
                                       ),
-                                      text: controller.user['phoneNumber']),
+                                      text: controller
+                                          .userController.user['phoneNumber']),
                                   CustomProfileTextFormField(
-                                      controller: controller.emailController,
+                                      controller: controller
+                                          .userController.emailController,
                                       inputType: TextInputType.emailAddress,
                                       iconImage: Image.asset(
                                         "assets/images/emails-icon-img.png",
                                         width: 16.w,
                                         height: 16.h,
                                       ),
-                                      text: controller.user['email'])
+                                      text: controller
+                                          .userController.user['email'])
                                 ],
                               )),
                         ),

@@ -1,22 +1,18 @@
 import 'package:coffe_app/Views/payment/views/payment.dart';
 import 'package:coffe_app/Views/payment/views/payment_detail.dart';
-import 'package:coffe_app/Views/widget/custom_button.dart';
-import 'package:coffe_app/Views/widget/custom_heading.dart';
+
 import 'package:coffe_app/constant/color.dart';
+import 'package:coffe_app/widget/custom_button.dart';
+import 'package:coffe_app/widget/custom_heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:svg_icon/svg_icon.dart';
 
-class OrderScreen extends StatefulWidget {
+class OrderScreen extends StatelessWidget {
   const OrderScreen({super.key});
 
-  @override
-  State<OrderScreen> createState() => _OrderScreenState();
-}
-
-class _OrderScreenState extends State<OrderScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -324,7 +320,7 @@ class _OrderScreenState extends State<OrderScreen> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Get.bottomSheet(const PaymentScreen());
+                          Get.bottomSheet(PaymentScreen());
                           // Get.to(PaymentScreen());
                         },
                         child: SvgIcon(
