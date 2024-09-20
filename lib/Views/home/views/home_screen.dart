@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coffe_app/Views/home/controllers/home_controller.dart';
 import 'package:coffe_app/Views/home/views/description_screen.dart';
 import 'package:coffe_app/constant/color.dart';
@@ -70,7 +71,6 @@ class HomeScreen extends GetView<HomeController> {
                     borderRadius: BorderRadius.circular(30.r),
                     color: primaryColor),
                 child: Row(
-                  // crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
@@ -216,11 +216,11 @@ class HomeScreen extends GetView<HomeController> {
                 height: 360.h,
                 child: GridView.builder(
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: 4,
+                    itemCount: controller.products.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2),
-                    itemBuilder: (BuildContext context, snapshot) {
+                    itemBuilder: (BuildContext context, index) {
                       return GestureDetector(
                         onTap: () {
                           Get.to(() => DescriptionScreen());
@@ -234,10 +234,9 @@ class HomeScreen extends GetView<HomeController> {
                             decoration: BoxDecoration(
                                 color: blackColor.withOpacity(0.4),
                                 borderRadius: BorderRadius.circular(15.r),
-                                image: const DecorationImage(
-                                    image: AssetImage(
-                                  "assets/images/coffee-glass-img.png",
-                                ))),
+                                image: DecorationImage(
+                                    image: NetworkImage(controller
+                                        .products[index]["coffee_img"]))),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
@@ -254,14 +253,17 @@ class HomeScreen extends GetView<HomeController> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Iced Spanish Mocca",
+                                        controller.products[index]["name"],
                                         style: GoogleFonts.poppins(
                                             fontSize: 10.sp,
                                             fontWeight: FontWeight.w700,
                                             color: whiteColor),
                                       ),
                                       Text(
-                                        "Starts from \$10",
+                                        "Starts from \$" +
+                                            controller.products[index]
+                                                    ["coffee_price"]
+                                                .toString(),
                                         style: GoogleFonts.poppins(
                                             fontSize: 10.sp,
                                             fontWeight: FontWeight.w400,
@@ -354,19 +356,21 @@ class HomeScreen extends GetView<HomeController> {
                                 ),
                                 RichText(
                                     text: TextSpan(
-                                        text: "Starts from",
+                                        text: "Starts from ",
                                         style: GoogleFonts.poppins(
                                             fontSize: 10.sp,
                                             fontWeight: FontWeight.w400,
                                             color: brownColor),
                                         children: [
                                       TextSpan(
-                                          text: "\$12",
+                                          text: controller.products[index]
+                                                  ["coffee_price"]
+                                              .toString(),
                                           style: GoogleFonts.poppins(
                                               fontSize: 12.sp,
                                               fontWeight: FontWeight.w400,
                                               color: brownColor))
-                                    ]))
+                                    ])),
                               ],
                             ),
                             SizedBox(
