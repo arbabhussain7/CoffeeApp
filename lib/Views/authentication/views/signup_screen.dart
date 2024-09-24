@@ -6,7 +6,6 @@ import 'package:coffe_app/widget/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:svg_icon/svg_icon.dart';
@@ -194,7 +193,7 @@ class SignUpScreen extends GetView<AuthController> {
                     : CustomButton(
                         text: "Sign up",
                         onpressed: () {
-                          if (key1!.currentState!.validate()) {
+                          if (key1.currentState!.validate()) {
                             controller.register();
 
                             print('Validation Successful');

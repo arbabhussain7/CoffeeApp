@@ -2,7 +2,6 @@ import 'package:coffe_app/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:svg_icon/svg_icon.dart';
 
 class CustomHeading extends StatelessWidget {

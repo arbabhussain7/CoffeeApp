@@ -1,9 +1,13 @@
 import 'package:coffe_app/Views/authentication/controllers/user_controller.dart';
+import 'package:coffe_app/Views/cart/controller/cart_controller.dart';
+import 'package:coffe_app/Views/home/controllers/product_controller.dart';
+import 'package:coffe_app/Views/profile/controllers/profile_controller.dart';
 import 'package:coffe_app/Views/splash_screen/views/splash_screen.dart';
 import 'package:coffe_app/binding/binding_screen.dart';
 import 'package:coffe_app/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -14,9 +18,13 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  await Firebase.initializeApp();
   Get.put(UserController());
+  Get.put(CartController());
+  Get.put(ProductController());
+  Get.put(ProfileController());
 
+  Stripe.publishableKey =
+      "pk_test_51Q1nGrFHugyQIn2Jo2F4AJUICJQAYwhiZtrZZSab0MBvLUAIChcaTt8bvfQZTL0sqBpoUnq6evjsTeslbzWpwmBb00lQXUvOxN";
   runApp(const MyApp());
 }
 
@@ -33,7 +41,7 @@ class MyApp extends StatelessWidget {
           return GetMaterialApp(
             debugShowCheckedModeBanner: false,
             initialBinding: BindingScreen(),
-            title: 'First Method',
+            title: 'Coffee App',
             theme: ThemeData(
               scaffoldBackgroundColor: whiteColor,
               primaryColor: brownColor,

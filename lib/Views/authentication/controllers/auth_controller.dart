@@ -71,7 +71,7 @@ class AuthController extends GetxController {
           email: loginEmailController.text,
           password: loginPasswordController.text);
       userController.getUser();
-      Get.offAll(() => BottomNavBar());
+      Get.offAll(() => const BottomNavBar());
     } catch (e) {
       Get.snackbar("Login ", "User ",
           backgroundColor: primaryColor,

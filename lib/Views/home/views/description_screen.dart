@@ -2,14 +2,15 @@ import 'package:coffe_app/Views/home/controllers/home_controller.dart';
 import 'package:coffe_app/Views/order/views/order_screen.dart';
 import 'package:coffe_app/constant/color.dart';
 import 'package:coffe_app/constant/list.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DescriptionScreen extends GetView<HomeController> {
-  DescriptionScreen({super.key});
-
+  DescriptionScreen({super.key, required int index});
+  var index = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +20,11 @@ class DescriptionScreen extends GetView<HomeController> {
           children: [
             Stack(
               children: [
-                Image.asset("assets/images/chocalate-img.png"),
+                Image.network(
+                    width: 393.w,
+                    height: 316.h,
+                    fit: BoxFit.cover,
+                    controller.products[index]["coffee_img"]),
                 Padding(
                   padding: EdgeInsets.only(top: 28.h, left: 289.w),
                   child: Container(
@@ -73,7 +78,7 @@ class DescriptionScreen extends GetView<HomeController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Iced Spanish Mocca",
+                    controller.products[index]['name'],
                     style: GoogleFonts.poppins(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w400,
@@ -129,7 +134,7 @@ class DescriptionScreen extends GetView<HomeController> {
                     ),
                   ),
                   Text(
-                    "Starts from \$10",
+                    "Starts from  \$${controller.products[index]["coffee_price"]}",
                     style: GoogleFonts.poppins(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w400,
@@ -436,7 +441,7 @@ class DescriptionScreen extends GetView<HomeController> {
                               color: whiteColor,
                             ),
                             Text(
-                              "Added to cart (2) ",
+                              "Added to cart",
                               style: GoogleFonts.poppins(
                                   fontSize: 16.sp,
                                   fontWeight: FontWeight.w400,
@@ -448,21 +453,35 @@ class DescriptionScreen extends GetView<HomeController> {
                     );
                     ScaffoldMessenger.of(context).showSnackBar(message);
                   },
-                  child: Container(
-                    width: 133.w,
-                    height: 53.h,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: primaryColor),
-                        color: whiteColor,
-                        borderRadius: BorderRadius.circular(10.r)),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Add to cart",
-                        style: GoogleFonts.poppins(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w400,
-                            color: blackColor),
+                  child: GestureDetector(
+                    onTap: () {
+                      print("coffee_img" +
+                          controller.products[index]["coffee_img"]);
+                      controller.cartController.addToCart(
+                          coffee_img: controller.products[index]['coffee_img'],
+                          coffee_price: controller.products[index]
+                              ["coffee_price"],
+                          uid: FirebaseAuth.instance.currentUser!.uid,
+                          name: controller.products[index]['name']);
+
+                      print("hello");
+                    },
+                    child: Container(
+                      width: 133.w,
+                      height: 53.h,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: primaryColor),
+                          color: whiteColor,
+                          borderRadius: BorderRadius.circular(10.r)),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Add to cart",
+                          style: GoogleFonts.poppins(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w400,
+                              color: blackColor),
+                        ),
                       ),
                     ),
                   ),
@@ -472,7 +491,7 @@ class DescriptionScreen extends GetView<HomeController> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Get.to(() => const OrderScreen());
+                    Get.to(() => OrderScreen());
                   },
                   child: Container(
                     width: 133.w,

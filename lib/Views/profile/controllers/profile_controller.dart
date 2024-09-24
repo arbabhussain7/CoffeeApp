@@ -10,6 +10,7 @@ import 'package:image_picker/image_picker.dart';
 
 class ProfileController extends GetxController {
   final UserController userController = Get.find<UserController>();
+
   RxString ImagePath = "".obs;
   var image;
   var imageUrl = "".obs;
@@ -18,10 +19,9 @@ class ProfileController extends GetxController {
   RxBool isSelectedOption = false.obs;
 
 //..........................Navigation Route............
-void naviagteToProfileScreen(){
-                            Get.to(() => ProfileDetail());
-
-}
+  void naviagteToProfileScreen() {
+    Get.to(() => const ProfileDetail());
+  }
 
   void switchChange(bool value) {
     isSelectedOption.value = value;

@@ -1,6 +1,10 @@
 import 'package:coffe_app/Views/authentication/views/login_screen.dart';
+import 'package:coffe_app/Views/navigation/bottom_nav_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,9 +18,10 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    Future.delayed(const Duration(seconds: 2), () {
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => const LoginScreen()));
+    Future.delayed(const Duration(seconds: 1), () {
+      FirebaseAuth.instance.currentUser == null
+          ? Get.to(() => const LoginScreen())
+          : Get.offAll(() => const BottomNavBar());
     });
   }
 

@@ -1,9 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:coffe_app/Views/cart/controller/cart_controller.dart';
 import 'package:coffe_app/Views/home/controllers/product_controller.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
   final ProductController productController = Get.find<ProductController>();
+  final CartController cartController = Get.find<CartController>();
+
   RxInt isSelectedIndexs = 1.obs;
   var products = [].obs;
   RxInt productsIndex = 0.obs;

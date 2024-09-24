@@ -6,8 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PaymentScreen extends GetView<PaymentController> {
-  PaymentScreen({super.key});
+class PaymentScreen extends GetView<PaymentsController> {
+  const PaymentScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

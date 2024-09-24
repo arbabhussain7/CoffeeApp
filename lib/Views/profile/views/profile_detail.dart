@@ -39,7 +39,7 @@ class ProfileDetail extends GetView<ProfileController> {
                               onTap: () {
                                 controller.getImage();
                               },
-                              child: Container(
+                              child: SizedBox(
                                 width: 52.w,
                                 height: 52.h,
                                 child: Obx(() {
@@ -162,7 +162,7 @@ class ProfileDetail extends GetView<ProfileController> {
                         ),
                         Obx(
                           () => controller.isLoading.value
-                              ? Center(
+                              ? const Center(
                                   child: CircularProgressIndicator(),
                                 )
                               : Padding(

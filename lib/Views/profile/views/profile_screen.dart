@@ -11,8 +11,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfileScreen extends GetView<ProfileController> {
-  ProfileScreen({super.key});
-
+  const ProfileScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,11 +102,14 @@ class ProfileScreen extends GetView<ProfileController> {
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 5.h),
-                        child: ProfileInfo(
-                          text: "Your Cart",
-                          image: "assets/images/cart-img.png",
-                          width: 17.w,
-                          height: 17.h,
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: ProfileInfo(
+                            text: "Your Cart",
+                            image: "assets/images/cart-img.png",
+                            width: 17.w,
+                            height: 17.h,
+                          ),
                         ),
                       ),
                     ],
