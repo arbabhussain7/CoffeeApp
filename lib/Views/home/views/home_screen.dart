@@ -4,23 +4,17 @@ import 'package:coffe_app/Views/notification/views/push_notification_services.da
 import 'package:coffe_app/constant/color.dart';
 import 'package:coffe_app/constant/list.dart';
 import 'package:coffe_app/widget/custom_header.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:svg_icon/svg_icon.dart';
 
 class HomeScreen extends GetView<HomeController> {
   const HomeScreen({super.key});
   @override
   @override
   Widget build(BuildContext context) {
-    FirebaseMessaging.instance.getToken().then((newToken) {
-      print("FCM Token");
-      print(newToken);
-    });
-
     return SingleChildScrollView(
       child: SafeArea(
         child: Padding(
@@ -127,40 +121,35 @@ class HomeScreen extends GetView<HomeController> {
               SizedBox(
                 height: 12.h,
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12.w),
-                child: Container(
+              GestureDetector(
+                onTap: () {},
+                child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12.w),
-                  width: 349.w,
-                  height: 42.h,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.r),
-                      color: blackColor.withOpacity(0.1)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "View Daily Missions",
-                        style: GoogleFonts.poppins(
-                            fontSize: 10.sp,
-                            fontWeight: FontWeight.w400,
-                            color: brownColor),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          PushNotificationServices.sendNotificationToSelectedDriver(
-                              "cikwFp09S82w62ivrvDdXv:APA91bGQBfLgsZ8z4VlhyTg2E5ukNrLhX7ep7Phlt3zhoyUZKswH2dXhAJThm-kcwIqJ4SOdP5u46MnERKOwXdDv9mr_C1ZNEVsftmoLzSclWJSFxe3-0eZ16P7z6YxzY3p-zCHpgPej",
-                              context,
-                              "12");
-                        },
-                        child: SvgIcon(
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 12.w),
+                    width: 349.w,
+                    height: 42.h,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.r),
+                        color: blackColor.withOpacity(0.1)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "View Daily Missions",
+                          style: GoogleFonts.poppins(
+                              fontSize: 10.sp,
+                              fontWeight: FontWeight.w400,
+                              color: brownColor),
+                        ),
+                        SvgPicture.asset(
                           "assets/icons/forward-icon.svg",
                           width: 16.w,
                           height: 16.h,
                           color: primaryColor,
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -290,7 +279,7 @@ class HomeScreen extends GetView<HomeController> {
                                               Icons.arrow_back,
                                               color: Colors.transparent,
                                             ),
-                                            SvgIcon(
+                                            SvgPicture.asset(
                                               "assets/icons/forward-icon.svg",
                                               width: 16.w,
                                               height: 16.h,
@@ -402,7 +391,7 @@ class HomeScreen extends GetView<HomeController> {
                                       Icons.add,
                                       color: Colors.transparent,
                                     ),
-                                    SvgIcon(
+                                    SvgPicture.asset(
                                       "assets/icons/forward-icon.svg",
                                       width: 16.w,
                                       height: 16.h,

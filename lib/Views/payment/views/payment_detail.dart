@@ -5,9 +5,9 @@ import 'package:coffe_app/widget/custom_heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:svg_icon/svg_icon.dart';
 
 class PaymentDetail extends StatelessWidget {
   const PaymentDetail({super.key});
@@ -63,21 +63,21 @@ class PaymentDetail extends StatelessWidget {
                         endActionPane:
                             ActionPane(motion: const ScrollMotion(), children: [
                           GestureDetector(
-                            onTap: () {
-                              Get.to(() => const ManageOrder());
-                            },
-                            child: Container(
-                              width: 31.w,
-                              padding: const EdgeInsets.all(5),
-                              height: 31.h,
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: blackColor.withOpacity(0.2)),
-                                  borderRadius: BorderRadius.circular(5.r)),
-                              child:
-                                  const SvgIcon("assets/icons/edit-icon.svg"),
-                            ),
-                          ),
+                              onTap: () {
+                                Get.to(() => const ManageOrder());
+                              },
+                              child: Container(
+                                width: 31.w,
+                                padding: const EdgeInsets.all(5),
+                                height: 31.h,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: blackColor.withOpacity(0.2)),
+                                    borderRadius: BorderRadius.circular(5.r)),
+                                child: SvgPicture.asset(
+                                  ("assets/icons/edit-icon.svg"),
+                                ),
+                              )),
                           SizedBox(
                             width: 12.w,
                           ),
@@ -89,7 +89,7 @@ class PaymentDetail extends StatelessWidget {
                                 border: Border.all(
                                     color: blackColor.withOpacity(0.2)),
                                 borderRadius: BorderRadius.circular(5.r)),
-                            child: const SvgIcon(
+                            child: SvgPicture.asset(
                               "assets/icons/delete-icon.svg",
                               color: redColor,
                             ),

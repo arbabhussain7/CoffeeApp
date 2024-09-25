@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:svg_icon/svg_icon.dart';
 
 class BottomNavBar extends GetView<NavigationControllor> {
   const BottomNavBar({super.key});
@@ -64,7 +63,7 @@ class BottomNavBar extends GetView<NavigationControllor> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SvgIcon(
+                        SvgPicture.asset(
                           "assets/icons/favorite-nav.svg",
                           width: 20.w,
                           height: 18.h,
@@ -87,7 +86,7 @@ class BottomNavBar extends GetView<NavigationControllor> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SvgIcon(
+                        SvgPicture.asset(
                           "assets/icons/history-nav.svg",
                           width: 20.w,
                           height: 20.h,
@@ -112,7 +111,7 @@ class BottomNavBar extends GetView<NavigationControllor> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SvgIcon(
+                        SvgPicture.asset(
                           "assets/icons/reward-nav.svg",
                           width: 24.w,
                           height: 24.h,

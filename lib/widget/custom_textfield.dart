@@ -1,8 +1,8 @@
 import 'package:coffe_app/constant/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:svg_icon/svg_icon.dart';
 
 // ignore: must_be_immutable
 class CustomTextfield extends StatelessWidget {
@@ -18,7 +18,7 @@ class CustomTextfield extends StatelessWidget {
   });
 
   final String text;
-  final SvgIcon icons;
+  final SvgPicture icons;
   final String hintText;
   final TextInputType inputType;
   bool obscureText = false;

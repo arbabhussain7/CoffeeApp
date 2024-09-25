@@ -2,8 +2,8 @@ import 'package:coffe_app/constant/color.dart';
 import 'package:coffe_app/widget/custom_heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:svg_icon/svg_icon.dart';
 
 class ManageOrder extends StatelessWidget {
   const ManageOrder({super.key});
@@ -135,7 +135,7 @@ class ManageOrder extends StatelessWidget {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.center,
                                                   children: [
-                                                    SvgIcon(
+                                                    SvgPicture.asset(
                                                       "assets/icons/alert-icon.svg",
                                                       width: 38.w,
                                                       height: 38.h,

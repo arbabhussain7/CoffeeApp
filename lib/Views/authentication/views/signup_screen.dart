@@ -5,10 +5,10 @@ import 'package:coffe_app/widget/custom_button.dart';
 import 'package:coffe_app/widget/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:svg_icon/svg_icon.dart';
 
 class SignUpScreen extends GetView<AuthController> {
   SignUpScreen({super.key});
@@ -53,7 +53,7 @@ class SignUpScreen extends GetView<AuthController> {
                   }
                 },
                 text: "Username",
-                icons: const SvgIcon(
+                icons: SvgPicture.asset(
                   "assets/icons/account-icon.svg",
                   width: 16,
                   height: 16,
@@ -77,7 +77,7 @@ class SignUpScreen extends GetView<AuthController> {
                   return null;
                 },
                 text: "Email",
-                icons: const SvgIcon(
+                icons: SvgPicture.asset(
                   "assets/icons/email-icon.svg",
                   width: 16,
                   height: 16,
@@ -105,7 +105,7 @@ class SignUpScreen extends GetView<AuthController> {
                       padding: EdgeInsets.only(top: 6.h),
                       child: Row(
                         children: [
-                          const SvgIcon(
+                          SvgPicture.asset(
                             "assets/icons/password-icon.svg",
                             width: 16,
                             height: 16,
@@ -174,7 +174,7 @@ class SignUpScreen extends GetView<AuthController> {
                 obscureText: true,
                 inputType: TextInputType.visiblePassword,
                 text: "Password",
-                icons: const SvgIcon(
+                icons: SvgPicture.asset(
                   "assets/icons/password-icon.svg",
                   width: 16,
                   height: 16,

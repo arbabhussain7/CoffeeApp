@@ -31,6 +31,7 @@ class AuthController extends GetxController {
       'phoneNumber': phoneController.text,
       'imageUrl': "",
       'uid': uid,
+      'token': "",
     });
   }
 

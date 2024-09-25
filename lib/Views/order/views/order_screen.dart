@@ -8,9 +8,9 @@ import 'package:coffe_app/widget/custom_button.dart';
 import 'package:coffe_app/widget/custom_heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:svg_icon/svg_icon.dart';
 
 class OrderScreen extends GetView<CartController> {
   @override
@@ -338,7 +338,7 @@ class OrderScreen extends GetView<CartController> {
                             Get.bottomSheet(const PaymentScreen());
                             // Get.to(PaymentScreen());
                           },
-                          child: SvgIcon(
+                          child: SvgPicture.asset(
                             "assets/icons/forward-icon.svg",
                             width: 16.w,
                             height: 16.h,

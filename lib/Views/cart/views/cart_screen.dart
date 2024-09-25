@@ -2,9 +2,9 @@ import 'package:coffe_app/constant/color.dart';
 import 'package:coffe_app/widget/custom_heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:svg_icon/svg_icon.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -269,7 +269,7 @@ class CartScreen extends StatelessWidget {
                     SizedBox(
                       width: 2.w,
                     ),
-                    const SvgIcon(
+                    SvgPicture.asset(
                       "assets/icons/forwards-icon.svg",
                       width: 4,
                       height: 7,
