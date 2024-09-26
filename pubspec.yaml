@@ -57,6 +57,7 @@ dependencies:
   permission_handler: ^11.3.1
   flutter_svg: ^2.0.10+1
   firebase_dynamic_links: ^6.0.7
+  share_plus: ^10.0.2
 
 dev_dependencies:
   flutter_test:

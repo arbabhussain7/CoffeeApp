@@ -2,41 +2,40 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coffe_app/Views/cart/controller/cart_controller.dart';
 import 'package:get/get.dart';
 
-class HomeController extends GetxController {
-  final CartController cartController = Get.find<CartController>();
-
-  RxInt isSelectedIndexs = 1.obs;
-  var products = [].obs;
-  RxInt productsIndex = 0.obs;
+class DescriptionController extends GetxController {
+  RxBool isLoading = false.obs;
+  var product = {}.obs;
+  var productId = Get.arguments[0];
   RxInt selectedSizeIndex = 1.obs;
   RxInt isSelectedOptions = 0.obs;
   RxInt isSelecteds = 0.obs;
   RxInt selectedOptions = 0.obs;
 
+  CartController controller = Get.find<CartController>();
   @override
-  void onInit() {
+  onInit() {
+    getProduct();
     super.onInit();
-    getProducts();
   }
 
-  void getProducts() async {
+  void getProduct() async {
     try {
-      products.clear();
-      var docs = await FirebaseFirestore.instance.collection('product').get();
-      for (var doc in docs.docs) {
-        products.add(doc);
-      }
+      isLoading(true);
+      print("Prodect Id" + productId);
+
+      var prod = await FirebaseFirestore.instance
+          .collection('product')
+          .doc(productId)
+          .get();
+      print(prod.data());
+      product(prod.data());
     } catch (e) {
       print(e.toString());
-    } finally {}
+    } finally {
+      isLoading(false);
+    }
   }
 
-  ///home
-  void isSelectedIndex(int index) {
-    isSelectedIndexs.value = index;
-  }
-
-//description screen
   void selectedIndex(int index) {
     selectedSizeIndex.value = index;
   }

@@ -67,7 +67,7 @@ class PaymentsController extends GetxController {
   createPaymentIntent(String amount, String productId) async {
     try {
       const String corsUrl = "https://corsproxy.io/?";
-      final String baseUrl =
+      const String baseUrl =
           '${corsUrl}https://api.stripe.com/v1/payment_intents';
 
       var headers = <String, String>{

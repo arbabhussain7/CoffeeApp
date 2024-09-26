@@ -35,7 +35,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Your Message"),
+        title: const Text("Your Message"),
       ),
       body: Center(
         child: Text(decodedPayload.toString()),

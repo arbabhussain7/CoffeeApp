@@ -1,6 +1,7 @@
 import 'package:coffe_app/Views/authentication/controllers/user_controller.dart';
 import 'package:coffe_app/Views/cart/controller/cart_controller.dart';
-import 'package:coffe_app/Views/home/controllers/product_controller.dart';
+import 'package:coffe_app/Views/dynamicLink/dynamic_links.dart';
+import 'package:coffe_app/Views/home/controllers/description_controller.dart';
 import 'package:coffe_app/Views/profile/controllers/profile_controller.dart';
 import 'package:coffe_app/Views/splash_screen/views/splash_screen.dart';
 import 'package:coffe_app/binding/binding_screen.dart';
@@ -25,10 +26,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
+  DynamicLinks().initDynamicLink();
   Get.put(UserController());
   Get.put(CartController());
-  Get.put(ProductController());
+  // Get.put(DescriptionController());
   Get.put(ProfileController());
 
   Stripe.publishableKey =
@@ -104,7 +105,7 @@ class _MyAppState extends State<MyApp> {
     await flutterLocalNotificationsPlugin.initialize(initializationSettings);
   }
 
-  AndroidNotificationChannel channel = AndroidNotificationChannel(
+  AndroidNotificationChannel channel = const AndroidNotificationChannel(
     'high_importance_channel', // id
     'High Importance Notifications', // title
     description: 'This channel is used for important notifications.',
@@ -118,7 +119,7 @@ class _MyAppState extends State<MyApp> {
     const settingsAndroid =
         AndroidInitializationSettings('@mipmap/ic_launcher');
     final settingsIOS = DarwinInitializationSettings(
-        onDidReceiveLocalNotification: (id, title, body, payload) => null);
+        onDidReceiveLocalNotification: (id, title, body, payload) {});
     await flutterLocalNotificationsPlugin.initialize(
         InitializationSettings(android: settingsAndroid, iOS: settingsIOS));
 

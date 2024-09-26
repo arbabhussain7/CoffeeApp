@@ -1,4 +1,6 @@
-import 'package:coffe_app/Views/home/controllers/home_controller.dart';
+import 'package:coffe_app/Views/cart/controller/cart_controller.dart';
+import 'package:coffe_app/Views/dynamicLink/dynamic_links.dart';
+import 'package:coffe_app/Views/home/controllers/description_controller.dart';
 import 'package:coffe_app/Views/order/views/order_screen.dart';
 import 'package:coffe_app/constant/color.dart';
 import 'package:coffe_app/constant/list.dart';
@@ -7,9 +9,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:share_plus/share_plus.dart';
 
-class DescriptionScreen extends GetView<HomeController> {
-  DescriptionScreen({super.key, required int index});
+class DescriptionScreen extends GetView<DescriptionController> {
+  DescriptionScreen({
+    super.key,
+  });
   var index = 1;
   @override
   Widget build(BuildContext context) {
@@ -20,29 +25,67 @@ class DescriptionScreen extends GetView<HomeController> {
           children: [
             Stack(
               children: [
-                Image.network(
-                    width: 393.w,
-                    height: 316.h,
-                    fit: BoxFit.cover,
-                    controller.products[index]["coffee_img"]),
+                Obx(
+                  () => controller.isLoading.value
+                      ? Center(child: SizedBox())
+                      : Image.network(
+                          width: 393.w,
+                          height: 316.h,
+                          fit: BoxFit.cover,
+                          controller.product["coffee_img"]),
+                ),
                 Padding(
-                  padding: EdgeInsets.only(top: 28.h, left: 289.w),
-                  child: Container(
-                    width: 95.w,
-                    height: 25.h,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.r),
-                        color: whiteColor),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Available",
-                        style: GoogleFonts.poppins(
-                            fontSize: 10.sp,
-                            fontWeight: FontWeight.w400,
-                            color: greenColor),
+                  padding:
+                      EdgeInsets.symmetric(vertical: 32.h, horizontal: 10.w),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          DynamicLinks()
+                              .createLink(controller.productId)
+                              .then((value) {
+                            Share.share(value);
+
+                            // Get.to(() => DescriptionScreen());
+                          });
+                        },
+                        child: Container(
+                          width: 95.w,
+                          height: 25.h,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.r),
+                              color: redColor),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Share",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 10.sp,
+                                  fontWeight: FontWeight.w400,
+                                  color: whiteColor),
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                      Container(
+                        width: 95.w,
+                        height: 25.h,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.r),
+                            color: whiteColor),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "Available",
+                            style: GoogleFonts.poppins(
+                                fontSize: 10.sp,
+                                fontWeight: FontWeight.w400,
+                                color: greenColor),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Padding(
@@ -77,12 +120,16 @@ class DescriptionScreen extends GetView<HomeController> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    controller.products[index]['name'],
-                    style: GoogleFonts.poppins(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w400,
-                        color: blackColor),
+                  Obx(
+                    () => controller.isLoading.value
+                        ? Text("")
+                        : Text(
+                            controller.product['name'],
+                            style: GoogleFonts.poppins(
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w400,
+                                color: blackColor),
+                          ),
                   ),
                   Container(
                     width: 31.w,
@@ -133,12 +180,16 @@ class DescriptionScreen extends GetView<HomeController> {
                       ],
                     ),
                   ),
-                  Text(
-                    "Starts from  \$${controller.products[index]["coffee_price"]}",
-                    style: GoogleFonts.poppins(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w400,
-                        color: brownColor),
+                  Obx(
+                    () => controller.isLoading.value
+                        ? Text("")
+                        : Text(
+                            "Starts from  \$${controller.product["coffee_price"]}",
+                            style: GoogleFonts.poppins(
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w400,
+                                color: brownColor),
+                          ),
                   )
                 ],
               ),
@@ -455,14 +506,13 @@ class DescriptionScreen extends GetView<HomeController> {
                   },
                   child: GestureDetector(
                     onTap: () {
-                      print("coffee_img" +
-                          controller.products[index]["coffee_img"]);
-                      controller.cartController.addToCart(
-                          coffee_img: controller.products[index]['coffee_img'],
-                          coffee_price: controller.products[index]
-                              ["coffee_price"],
+                      print("coffee_img" + controller.product["coffee_img"]);
+
+                      controllers.addToCart(
+                          coffee_img: controller.product['coffee_img'],
+                          coffee_price: controller.product["coffee_price"],
                           uid: FirebaseAuth.instance.currentUser!.uid,
-                          name: controller.products[index]['name']);
+                          name: controller.product['name']);
 
                       print("hello");
                     },

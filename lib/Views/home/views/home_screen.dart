@@ -1,6 +1,5 @@
 import 'package:coffe_app/Views/home/controllers/home_controller.dart';
 import 'package:coffe_app/Views/home/views/description_screen.dart';
-import 'package:coffe_app/Views/notification/views/push_notification_services.dart';
 import 'package:coffe_app/constant/color.dart';
 import 'package:coffe_app/constant/list.dart';
 import 'package:coffe_app/widget/custom_header.dart';
@@ -227,8 +226,8 @@ class HomeScreen extends GetView<HomeController> {
                       itemBuilder: (BuildContext context, index) {
                         return GestureDetector(
                           onTap: () {
-                            int index = 1;
-                            Get.to(() => DescriptionScreen(index: index));
+                            Get.to(() => DescriptionScreen(),
+                                arguments: [controller.products[index]['id']]);
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),

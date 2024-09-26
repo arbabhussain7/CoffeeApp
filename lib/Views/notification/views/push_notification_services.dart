@@ -69,7 +69,7 @@ class PushNotificationServices {
     String pickUpAddress = "Cold Brew and Slightly ";
 
     final String serverAccessTokenKey = await getAccesssToken();
-    print('token: ' + serverAccessTokenKey);
+    print('token: $serverAccessTokenKey');
     String endpointFirebaseCloudMessaging =
         "https://fcm.googleapis.com/v1/projects/coffeapp-c7c83/messages:send";
     final Map<String, dynamic> message = {

@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfileScreen extends GetView<ProfileController> {
@@ -102,14 +103,11 @@ class ProfileScreen extends GetView<ProfileController> {
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 5.h),
-                        child: GestureDetector(
-                          onTap: () {},
-                          child: ProfileInfo(
-                            text: "Your Cart",
-                            image: "assets/images/cart-img.png",
-                            width: 17.w,
-                            height: 17.h,
-                          ),
+                        child: ProfileInfo(
+                          text: "Your Cart",
+                          image: "assets/images/cart-img.png",
+                          width: 17.w,
+                          height: 17.h,
                         ),
                       ),
                     ],

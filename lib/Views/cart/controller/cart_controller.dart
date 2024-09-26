@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:coffe_app/Views/home/controllers/product_controller.dart';
 import 'package:coffe_app/Views/payment/controllers/payment_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 CartController controllers = Get.put(CartController());
-ProductController controller = Get.find();
+// ProductController controller = Get.find();
 
 PaymentsController controllor = Get.find<PaymentsController>();
 
