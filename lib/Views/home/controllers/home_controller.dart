@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coffe_app/Views/cart/controller/cart_controller.dart';
+import 'package:coffe_app/model/home_model.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
@@ -7,6 +8,7 @@ class HomeController extends GetxController {
 
   RxInt isSelectedIndexs = 1.obs;
   var products = [].obs;
+  RxList<Category> categories = <Category>[].obs;
   RxInt productsIndex = 0.obs;
   RxInt selectedSizeIndex = 1.obs;
   RxInt isSelectedOptions = 0.obs;
@@ -16,6 +18,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    getCategories();
     getProducts();
   }
 
@@ -29,6 +32,23 @@ class HomeController extends GetxController {
     } catch (e) {
       print(e.toString());
     } finally {}
+  }
+
+  void getCategories() async {
+    categories.clear();
+
+    var tCategories =
+        await FirebaseFirestore.instance.collection("categories").get();
+// map data loop
+    print("Length " + tCategories.docs.length.toString());
+    for (var doc in tCategories.docs) {
+      categories.add(Category.fromJson(doc.data()));
+    }
+    // docs.docs.map((doc) {
+    //   print("data" + doc.data().toString());
+    //   categories.add(Category.fromJson(doc.data()));
+    // });
+    print("categories: " + categories.toString());
   }
 
   ///home

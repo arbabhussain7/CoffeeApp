@@ -2,6 +2,7 @@ import 'package:coffe_app/Views/home/controllers/home_controller.dart';
 import 'package:coffe_app/Views/home/views/description_screen.dart';
 import 'package:coffe_app/constant/color.dart';
 import 'package:coffe_app/constant/list.dart';
+import 'package:coffe_app/model/home_model.dart';
 import 'package:coffe_app/widget/custom_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -165,7 +166,7 @@ class HomeScreen extends GetView<HomeController> {
               SizedBox(
                 height: 33.h,
                 child: ListView.separated(
-                  itemCount: listOfCategories.length,
+                  itemCount: controller.categories.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, int index) {
                     // controller.isSelectedIndexs == index;
@@ -184,7 +185,7 @@ class HomeScreen extends GetView<HomeController> {
                           child: Align(
                             alignment: Alignment.center,
                             child: Text(
-                              listOfCategories[index],
+                              controller.categories[index].iceCream.toString(),
                               style: GoogleFonts.poppins(
                                   fontSize: 10.sp,
                                   fontWeight: FontWeight.w400,
