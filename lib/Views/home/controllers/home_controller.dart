@@ -8,6 +8,7 @@ class HomeController extends GetxController {
 
   RxInt isSelectedIndexs = 1.obs;
   var products = [].obs;
+  var newCategories = [].obs;
   RxList<Category> categories = <Category>[].obs;
   RxInt productsIndex = 0.obs;
   RxInt selectedSizeIndex = 1.obs;
@@ -37,13 +38,20 @@ class HomeController extends GetxController {
   void getCategories() async {
     categories.clear();
 
-    var tCategories =
-        await FirebaseFirestore.instance.collection("categories").get();
+    var tCategories = await FirebaseFirestore.instance
+        .collection("categories")
+        .limit(1)
+        .get();
 // map data loop
-    print("Length " + tCategories.docs.length.toString());
-    for (var doc in tCategories.docs) {
-      categories.add(Category.fromJson(doc.data()));
-    }
+
+    Category tCategory = Category.fromJson(tCategories.docs.first.data());
+
+    newCategories = tCategories.docs.first.data()['categories'];
+
+    // print("Length " + tCategories.docs.length.toString());
+    // for (var doc in tCategories.docs) {
+    //   categories.add(Category.fromJson(doc.data()));
+    // }
     // docs.docs.map((doc) {
     //   print("data" + doc.data().toString());
     //   categories.add(Category.fromJson(doc.data()));

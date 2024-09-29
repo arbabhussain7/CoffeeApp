@@ -4,15 +4,18 @@ class Category {
   String? shakes;
   String? iceCream;
   String? chocolate;
+  List<String>? categories;
 
   Category(
       {this.icedCoffee,
       this.brownies,
       this.shakes,
       this.iceCream,
+      this.categories,
       this.chocolate});
 
   Category.fromJson(Map<String, dynamic> json) {
+    categories = json['categories'];
     icedCoffee = json['icedCoffee'];
     brownies = json['brownies'];
     shakes = json['shakes'];

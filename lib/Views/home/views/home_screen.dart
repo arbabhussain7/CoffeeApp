@@ -166,7 +166,7 @@ class HomeScreen extends GetView<HomeController> {
               SizedBox(
                 height: 33.h,
                 child: ListView.separated(
-                  itemCount: controller.categories.length,
+                  itemCount: controller.newCategories.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, int index) {
                     // controller.isSelectedIndexs == index;
@@ -185,7 +185,7 @@ class HomeScreen extends GetView<HomeController> {
                           child: Align(
                             alignment: Alignment.center,
                             child: Text(
-                              controller.categories[index].iceCream.toString(),
+                              controller.newCategories[index].toString(),
                               style: GoogleFonts.poppins(
                                   fontSize: 10.sp,
                                   fontWeight: FontWeight.w400,
