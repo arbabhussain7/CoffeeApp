@@ -126,6 +126,7 @@ class OrderScreen extends GetView<CartController> {
                                 ClipRRect(
                                     borderRadius: BorderRadius.circular(15.r),
                                     child: Image.network(
+                                      fit: BoxFit.cover,
                                       controller.carts[index]["coffee_img"],
                                       height: 94.h,
                                       width: 100.w,

@@ -1,6 +1,7 @@
 import 'package:coffe_app/Views/authentication/controllers/user_controller.dart';
 import 'package:coffe_app/Views/cart/controller/cart_controller.dart';
 import 'package:coffe_app/Views/dynamicLink/dynamic_links.dart';
+import 'package:coffe_app/Views/favorite/controllers/favorite_controller.dart';
 import 'package:coffe_app/Views/home/controllers/description_controller.dart';
 import 'package:coffe_app/Views/profile/controllers/profile_controller.dart';
 import 'package:coffe_app/Views/splash_screen/views/splash_screen.dart';
@@ -28,8 +29,9 @@ void main() async {
   );
   DynamicLinks().initDynamicLink();
   Get.put(UserController());
+  Get.put(FavoriteController());
   Get.put(CartController());
-  // Get.put(DescriptionController());
+  Get.put(DescriptionController());
   Get.put(ProfileController());
 
   Stripe.publishableKey =
@@ -176,6 +178,10 @@ class _MyAppState extends State<MyApp> {
             theme: ThemeData(
               scaffoldBackgroundColor: whiteColor,
               primaryColor: brownColor,
+              progressIndicatorTheme: ProgressIndicatorThemeData(
+                color: brownColor,
+                circularTrackColor: brownColor,
+              ),
               textSelectionTheme: TextSelectionThemeData(
                   cursorColor: brownColor,
                   selectionColor: brownColor.withOpacity(0.5),

@@ -30,6 +30,7 @@ class Category {
     data['shakes'] = this.shakes;
     data['iceCream'] = this.iceCream;
     data['chocolate'] = this.chocolate;
+    data['categories'] = this.categories;
     return data;
   }
 }
