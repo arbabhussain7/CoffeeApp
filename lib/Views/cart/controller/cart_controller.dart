@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 CartController controllers = Get.put(CartController());
-// ProductController controller = Get.find();
 
 PaymentsController controllor = Get.find<PaymentsController>();
 
@@ -16,7 +15,8 @@ class CartController extends GetxController {
   var subTotalPrice = 0.obs;
   String? uid;
   @override
-  void onReady() {
+  void onInit() {
+    super.onInit();
     getCartData();
   }
 
@@ -50,6 +50,8 @@ class CartController extends GetxController {
       }
       print(FirebaseAuth.instance.currentUser!.uid);
       print(carts.length);
+      print("object");
+
       calculate();
       calulateSubtotal();
     } catch (e) {
@@ -60,7 +62,8 @@ class CartController extends GetxController {
   void calculate() {
     print("priceeee");
     for (var i = 0; i < carts.length; i++) {
-      totalPrice += int.parse(carts[i]["coffee_price"].toString());
+      totalPrice += carts[i]['coffee_price'];
+      // int.parse(carts[i]["coffee_price"].toString());
     }
   }
 

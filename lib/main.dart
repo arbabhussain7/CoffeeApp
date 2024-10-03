@@ -28,11 +28,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   DynamicLinks().initDynamicLink();
-  Get.put(UserController());
-  Get.put(FavoriteController());
-  Get.put(CartController());
-  Get.put(DescriptionController());
-  Get.put(ProfileController());
 
   Stripe.publishableKey =
       "pk_test_51Q1nGrFHugyQIn2Jo2F4AJUICJQAYwhiZtrZZSab0MBvLUAIChcaTt8bvfQZTL0sqBpoUnq6evjsTeslbzWpwmBb00lQXUvOxN";

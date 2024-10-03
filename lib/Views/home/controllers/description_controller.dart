@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 class DescriptionController extends GetxController {
   RxBool isLoading = false.obs;
-  Rxn<ProductModel> product = Rxn<ProductModel>();
+  Rx<ProductModel?> product = Rx<ProductModel?>(null);
   // RxString productId = ''.obs;
 
   var productId = Get.arguments[0];
@@ -72,25 +72,6 @@ class DescriptionController extends GetxController {
     }
     isFav(!isFav.value);
   }
-
-//   addFavorite(docId) async {
-//     await FirebaseFirestore.instance.collection("product").doc(docId).set({
-//       "favorite":
-//           FieldValue.arrayUnion([FirebaseAuth.instance.currentUser!.uid])
-//     }, SetOptions(merge: true));
-
-//     // isFav(true);
-//   }
-
-// //  Remove Favorite...
-
-//   removeFromFavorite(docId) async {
-//     await FirebaseFirestore.instance.collection("product").doc(docId).set({
-//       "favorite":
-//           FieldValue.arrayRemove([FirebaseAuth.instance.currentUser!.uid])
-//     }, SetOptions(merge: true));
-//     // isFav(false);
-//   }
 
 //check if id are availbe in favorite
 

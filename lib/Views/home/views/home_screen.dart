@@ -1,7 +1,6 @@
 import 'package:coffe_app/Views/home/controllers/home_controller.dart';
 import 'package:coffe_app/Views/home/views/description_screen.dart';
 import 'package:coffe_app/constant/color.dart';
-import 'package:coffe_app/constant/list.dart';
 import 'package:coffe_app/widget/custom_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

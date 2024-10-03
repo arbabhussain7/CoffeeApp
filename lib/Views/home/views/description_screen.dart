@@ -541,9 +541,8 @@ class DescriptionScreen extends GetView<DescriptionController> {
                                   coffee_img: controller
                                       .product.value!.coffeeImg
                                       .toString(),
-                                  coffee_price: controller
-                                      .product.value!.coffeePrice
-                                      .toString() as int,
+                                  coffee_price:
+                                      controller.product.value!.coffeePrice!,
                                   uid: FirebaseAuth.instance.currentUser!.uid,
                                   name: controller.product.value!.name
                                       .toString());

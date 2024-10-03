@@ -1,8 +1,8 @@
 import 'package:coffe_app/Views/favorite/controllers/favorite_controller.dart';
-import 'package:coffe_app/Views/home/controllers/description_controller.dart';
 import 'package:coffe_app/Views/home/views/description_screen.dart';
 import 'package:coffe_app/constant/color.dart';
 import 'package:coffe_app/widget/custom_header.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -120,7 +120,7 @@ class FavoriteScreen extends GetView<FavoriteController> {
                                         ),
                                       ),
                                       Text(
-                                        "\$ ${controller.favorites[index].coffeePrice}  "
+                                        "\$ ${controller.favorites[index].coffeePrice}"
                                             .toString(),
                                         style: GoogleFonts.poppins(
                                             fontSize: 12.sp,
@@ -135,14 +135,18 @@ class FavoriteScreen extends GetView<FavoriteController> {
                                   left: 312,
                                   top: 4,
                                   child: GestureDetector(
-                                    onTap: () {},
+                                    onTap: () {
+                                      controller.toggleFavorite(
+                                          controller.favorites[index]);
+                                    },
                                     child: Icon(
                                       Icons.favorite,
-                                      color: redColor,
-                                      // controller
-                                      // .descriptionController.isFav.value
-                                      // ? redColor
-                                      // : Colors.grey,
+                                      color: controller
+                                              .favorites[index].favorite!
+                                              .contains(FirebaseAuth
+                                                  .instance.currentUser!.uid)
+                                          ? redColor
+                                          : Colors.grey,
                                       size: 17,
                                     ),
                                   )),

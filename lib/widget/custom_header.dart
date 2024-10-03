@@ -23,9 +23,16 @@ class CustomHeader extends GetView<ProfileController> {
           onTap: () {
             Get.to(() => const ProfileScreen());
           },
-          child: CircleAvatar(
-              backgroundImage:
-                  NetworkImage(controller.userController.user["imageUrl"])),
+          child: Obx(
+            () => controller.isLoading.value
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : CircleAvatar(
+                    backgroundColor: Colors.grey,
+                    backgroundImage: NetworkImage(
+                        controller.userController.user["imageUrl"])),
+          ),
         ),
         SizedBox(
           width: 12.w,
@@ -33,12 +40,18 @@ class CustomHeader extends GetView<ProfileController> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              controller.userController.user['name'],
-              style: GoogleFonts.poppins(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w400,
-                  color: brownColor),
+            Obx(
+              () => controller.isLoading.value
+                  ? Center(
+                      child: Text(""),
+                    )
+                  : Text(
+                      controller.userController.user['name'],
+                      style: GoogleFonts.poppins(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w400,
+                          color: brownColor),
+                    ),
             ),
             Text("• 65 points",
                 style: GoogleFonts.poppins(

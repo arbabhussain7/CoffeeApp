@@ -5,6 +5,7 @@ import 'package:coffe_app/Views/favorite/controllers/favorite_controller.dart';
 import 'package:coffe_app/Views/home/controllers/home_controller.dart';
 import 'package:coffe_app/Views/home/controllers/description_controller.dart';
 import 'package:coffe_app/Views/navigation/controller/navigation_controllor.dart';
+import 'package:coffe_app/Views/order/controller/order_controller.dart';
 import 'package:coffe_app/Views/payment/controllers/payment_controller.dart';
 import 'package:coffe_app/Views/profile/controllers/profile_controller.dart';
 import 'package:get/get.dart';
@@ -21,5 +22,6 @@ class BindingScreen extends Bindings {
     Get.lazyPut(() => DescriptionController(), fenix: true);
     Get.lazyPut(() => CartController(), fenix: true);
     Get.lazyPut(() => FavoriteController(), fenix: true);
+    Get.lazyPut(() => OrderController(), fenix: true);
   }
 }
