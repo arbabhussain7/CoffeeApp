@@ -1,3 +1,5 @@
+
+/*
 import 'package:coffe_app/Views/order/views/order_detail.dart';
 import 'package:coffe_app/constant/color.dart';
 import 'package:flutter/material.dart';
@@ -85,7 +87,7 @@ class CustomOrder extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              Get.to(() => const OrderDetail());
+              Get.to(() => OrderDetail(0));
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -110,3 +112,35 @@ class CustomOrder extends StatelessWidget {
     );
   }
 }
+
+....................
+
+Positioned(
+                left: 285.w,
+                top: 5.h,
+                child: Container(
+                  width: 46.w,
+                  height: 15.h,
+                  decoration: BoxDecoration(
+                    color: primaryColor,
+                    borderRadius: BorderRadius.circular(10.r),
+                  ),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "23 min",
+                      style: GoogleFonts.poppins(
+                          fontSize: 10.sp,
+                          fontWeight: FontWeight.w400,
+                          color: whiteColor),
+                    ),
+                  ),
+                ),
+              ),
+
+
+
+
+
+*/
+

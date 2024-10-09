@@ -34,7 +34,7 @@ class FavoriteScreen extends GetView<FavoriteController> {
             ),
             Obx(
               () => controller.isLoading.value
-                  ? Center(
+                  ? const Center(
                       child: CircularProgressIndicator(),
                     )
                   : Container(

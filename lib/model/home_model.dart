@@ -24,13 +24,13 @@ class Category {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['icedCoffee'] = this.icedCoffee;
-    data['brownies'] = this.brownies;
-    data['shakes'] = this.shakes;
-    data['iceCream'] = this.iceCream;
-    data['chocolate'] = this.chocolate;
-    data['categories'] = this.categories;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['icedCoffee'] = icedCoffee;
+    data['brownies'] = brownies;
+    data['shakes'] = shakes;
+    data['iceCream'] = iceCream;
+    data['chocolate'] = chocolate;
+    data['categories'] = categories;
     return data;
   }
 }

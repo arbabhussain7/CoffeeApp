@@ -4,7 +4,6 @@ import 'dart:developer';
 import 'package:coffe_app/Views/cart/controller/cart_controller.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:http/http.dart' as http;
 
 class PaymentsController extends GetxController {

@@ -1,26 +1,55 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:coffe_app/Views/cart/controller/cart_controller.dart';
+import 'package:coffe_app/Views/order/views/order_detail.dart';
+import 'package:coffe_app/Views/payment/controllers/payment_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class OrderController extends GetxController {
   var orders = [].obs;
+  var documentLength = [].obs;
   RxBool isLoading = false.obs;
+  CartController cartController = Get.find<CartController>();
+  PaymentsController paymentsController = Get.find<PaymentsController>();
 
-  var totalPrice = 0.obs;
+  RxInt totalPrice = 0.obs;
+  // RxInt totalCoffeePrice = 0.obs;
 
   @override
   void onInit() {
     super.onInit();
     getOrdersData();
+
+    print("Cart data ${cartController.carts}");
   }
 
   void addOrdersData() async {
     try {
-      await FirebaseFirestore.instance.collection("orders").doc().update({
-        "coffee_img": FieldValue.arrayUnion([]),
-        "coffee_price": FieldValue.arrayUnion([]),
-        "id": FieldValue.arrayUnion([]),
-        "name": FieldValue.arrayUnion([]),
+      // Add the order data to the 'orders' collection and capture the reference
+      DocumentReference documentRef =
+          await FirebaseFirestore.instance.collection("orders").add({
+        'products': cartController.carts,
+        'createdAt': FieldValue.serverTimestamp(),
+        'status': 'pending',
+        'orderId': 'pending', // Temporarily set to 'pending'
+        'userId': FirebaseAuth.instance.currentUser!.uid,
+      });
+
+      // Get the automatically generated document ID
+      String documentId = documentRef.id;
+
+      // Update the 'orderId' field with the documentId
+      await documentRef.update({'orderId': documentId});
+
+      // Optional: If you want to delete something based on the current user
+      await FirebaseFirestore.instance
+          .collection('orders')
+          .where('id', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+          .get()
+          .then((querySnapshot) {
+        for (var doc in querySnapshot.docs) {
+          doc.reference.delete();
+        }
       });
     } catch (e) {
       print(e.toString());
@@ -29,31 +58,40 @@ class OrderController extends GetxController {
     }
   }
 
-  void getOrdersData() async {
-    print('get acrt');
-    try {
-      orders.clear();
-      var querySnapshot = await FirebaseFirestore.instance
-          .collection('cart')
-          .where('id', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-          .get();
-      for (var doc in querySnapshot.docs) {
-        orders.add(doc.data());
-      }
-      print(FirebaseAuth.instance.currentUser!.uid);
-      print(orders.length);
-      print("object");
+//
 
-      calculateOrders();
+  Future<void> getOrdersData() async {
+    try {
+      String? uid = FirebaseAuth.instance.currentUser?.uid;
+      if (uid != null) {
+        QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+            .collection('orders')
+            .where('userId', isEqualTo: uid)
+            .get();
+        orders.clear();
+        for (var doc in querySnapshot.docs) {
+          orders.add(doc);
+        }
+        print(FirebaseAuth.instance.currentUser!.uid);
+        print('Orders count: ${orders.length}');
+        print('Orders data: ${orders.toString()}');
+      }
     } catch (e) {
-      print(e.toString());
+      print("Error fetching orders: $e");
     }
   }
 
-  void calculateOrders() {
-    print("priceeee");
-    for (var i = 0; i < orders.length; i++) {
-      totalPrice += orders[i]['coffee_price'];
+  void calculateTotalPrice(int orderIndex) {
+    totalPrice.value = 0;
+    print("Calculating total price...");
+    for (var i = 0; i < orders[orderIndex]['products'].length; i++) {
+      if (orders[orderIndex]['products'][i].containsKey('coffee_price')) {
+        totalPrice =
+            totalPrice + orders[orderIndex]['products'][i]['coffee_price'];
+      }
+      print("total price ${totalPrice}");
+      Get.to(() => OrderDetail(orderIndex));
     }
+    // totalCoffeePrice = totalPrice;
   }
 }

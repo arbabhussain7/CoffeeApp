@@ -1,7 +1,7 @@
 import 'package:coffe_app/Views/cart/controller/cart_controller.dart';
+import 'package:coffe_app/Views/order/controller/order_controller.dart';
 import 'package:coffe_app/Views/payment/views/payment.dart';
 import 'package:coffe_app/Views/payment/views/payment_detail.dart';
-
 import 'package:coffe_app/constant/color.dart';
 import 'package:coffe_app/widget/custom_button.dart';
 import 'package:coffe_app/widget/custom_heading.dart';
@@ -11,15 +11,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class OrderScreen extends GetView<CartController> {
+class OrderScreen extends GetView<OrderController> {
   @override
   OrderScreen({super.key});
-  @override
-  var controller = Get.find<CartController>();
-
+  CartController cartController = Get.find<CartController>();
   @override
   Widget build(BuildContext context) {
-    controller.getCartData();
+    // cartController.getCartData();
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -108,7 +106,7 @@ class OrderScreen extends GetView<CartController> {
                   height: 212.h,
                   child: Obx(
                     () => ListView.separated(
-                      itemCount: controller.carts.length,
+                      itemCount: controller.cartController.carts.length,
                       itemBuilder: (context, index) {
                         return Container(
                           width: 353.w,
@@ -127,7 +125,9 @@ class OrderScreen extends GetView<CartController> {
                                     borderRadius: BorderRadius.circular(15.r),
                                     child: Image.network(
                                       fit: BoxFit.cover,
-                                      controller.carts[index]["coffee_img"],
+                                      controller.cartController
+                                          .carts[index]["coffee_img"]
+                                          .toString(),
                                       height: 94.h,
                                       width: 100.w,
                                     )),
@@ -139,7 +139,9 @@ class OrderScreen extends GetView<CartController> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      controller.carts[index]["name"],
+                                      controller
+                                          .cartController.carts[index]["name"]
+                                          .toString(),
                                       style: GoogleFonts.poppins(
                                           fontSize: 12.sp,
                                           fontWeight: FontWeight.w400,
@@ -206,7 +208,7 @@ class OrderScreen extends GetView<CartController> {
                                         color: Colors.transparent,
                                       ),
                                       Text(
-                                        "\$${controller.carts[index]["coffee_price"]}"
+                                        "\$${controller.cartController.carts[index]["coffee_price"].toString()}"
                                             .toString(),
                                         style: GoogleFonts.poppins(
                                             fontSize: 12.sp,
@@ -300,7 +302,7 @@ class OrderScreen extends GetView<CartController> {
                           color: blackColor),
                     ),
                     Text(
-                      "\$${controller.subTotalPrice.value}",
+                      "\$${controller.cartController.subTotalPrice.value}",
                       style: GoogleFonts.poppins(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w400,
@@ -395,8 +397,13 @@ class OrderScreen extends GetView<CartController> {
                     child: CustomButton(
                         text: "Done",
                         onpressed: () {
-                          controllor.makePayment(
-                              "${controller.subTotalPrice}", "PKR");
+                          controller.paymentsController.makePayment(
+                              "${controller.cartController.subTotalPrice}",
+                              "PKR");
+
+                          controller.addOrdersData();
+                          print("object ...... ");
+
                           // final message = SnackBar(
                           //   backgroundColor: whiteColor,
                           //   content: Container(

@@ -18,9 +18,9 @@ class BindingScreen extends Bindings {
     Get.lazyPut(() => ProfileController(), fenix: true);
     Get.lazyPut(() => HomeController(), fenix: true);
     Get.lazyPut(() => NavigationControllor(), fenix: true);
+    Get.lazyPut(() => CartController(), fenix: true);
     Get.lazyPut(() => PaymentsController(), fenix: true);
     Get.lazyPut(() => DescriptionController(), fenix: true);
-    Get.lazyPut(() => CartController(), fenix: true);
     Get.lazyPut(() => FavoriteController(), fenix: true);
     Get.lazyPut(() => OrderController(), fenix: true);
   }

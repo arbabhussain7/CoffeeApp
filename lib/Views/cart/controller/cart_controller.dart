@@ -1,11 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:coffe_app/Views/payment/controllers/payment_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-
-CartController controllers = Get.put(CartController());
-
-PaymentsController controllor = Get.find<PaymentsController>();
 
 class CartController extends GetxController {
   var orderFee = 5.obs;
@@ -49,7 +44,7 @@ class CartController extends GetxController {
         carts.add(doc.data());
       }
       print(FirebaseAuth.instance.currentUser!.uid);
-      print(carts.length);
+      print("length of carts  ${carts.length}");
       print("object");
 
       calculate();
@@ -63,12 +58,11 @@ class CartController extends GetxController {
     print("priceeee");
     for (var i = 0; i < carts.length; i++) {
       totalPrice += carts[i]['coffee_price'];
-      // int.parse(carts[i]["coffee_price"].toString());
     }
   }
 
   void calulateSubtotal() {
-    int gst = 5;
+    int gst = 150;
     int orderFee = 5;
     subTotalPrice = totalPrice + gst + orderFee;
   }

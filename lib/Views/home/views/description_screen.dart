@@ -21,7 +21,7 @@ class DescriptionScreen extends GetView<DescriptionController> {
     return Scaffold(
       body: Obx(
         () => controller.isLoading.value
-            ? Center(
+            ? const Center(
                 child: CircularProgressIndicator(),
               )
             : SingleChildScrollView(
@@ -124,7 +124,7 @@ class DescriptionScreen extends GetView<DescriptionController> {
                         children: [
                           Obx(
                             () => controller.isLoading.value
-                                ? Text("")
+                                ? const Text("")
                                 : Text(
                                     controller.product.value!.name.toString(),
                                     style: GoogleFonts.poppins(
@@ -195,7 +195,7 @@ class DescriptionScreen extends GetView<DescriptionController> {
                           ),
                           Obx(
                             () => controller.isLoading.value
-                                ? Text("")
+                                ? const Text("")
                                 : Text(
                                     "Starts from  \$${controller.product.value!.coffeePrice.toString()}",
                                     style: GoogleFonts.poppins(
@@ -533,11 +533,10 @@ class DescriptionScreen extends GetView<DescriptionController> {
                           },
                           child: GestureDetector(
                             onTap: () {
-                              print("coffee_img" +
-                                  controller.product.value!.coffeeImg
-                                      .toString());
+                              print(
+                                  "coffee_img${controller.product.value!.coffeeImg}");
 
-                              controllers.addToCart(
+                              controller.controller.addToCart(
                                   coffee_img: controller
                                       .product.value!.coffeeImg
                                       .toString(),

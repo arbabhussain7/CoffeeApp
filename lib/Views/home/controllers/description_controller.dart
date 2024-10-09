@@ -40,7 +40,7 @@ class DescriptionController extends GetxController {
           .contains(FirebaseAuth.instance.currentUser!.uid);
       product(ProductModel.fromJson(prod.data()!));
 
-      print("product.." + product.toString());
+      print("product..$product");
     } catch (e) {
       print(e.toString());
     } finally {
