@@ -59,14 +59,14 @@ class OrderDetail extends GetView<OrderController> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "Order #123456",
+                                    "Order ${controller.orders[orderIndex]['orderId']}",
                                     style: GoogleFonts.poppins(
                                         fontSize: 12.sp,
                                         fontWeight: FontWeight.w400,
                                         color: blackColor),
                                   ),
                                   Text(
-                                    "12:03 pm",
+                                    "${controller.orders[orderIndex]['createdAt'].toDate().hour % 12 == 0 ? 12 : controller.orders[orderIndex]['createdAt'].toDate().hour % 12}:${controller.orders[orderIndex]['createdAt'].toDate().minute.toString().padLeft(2, '0')}",
                                     style: GoogleFonts.poppins(
                                         fontSize: 12.sp,
                                         fontWeight: FontWeight.w400,
@@ -93,7 +93,7 @@ class OrderDetail extends GetView<OrderController> {
                                 height: 10.h,
                               ),
                               Text(
-                                "3 Items",
+                                "${controller.orders.isNotEmpty ? controller.orders[orderIndex]['products'].length : orderIndex} Items",
                                 style: GoogleFonts.poppins(
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.w400,
@@ -165,7 +165,7 @@ class OrderDetail extends GetView<OrderController> {
                                               height: 32.h,
                                             ),
                                             Text(
-                                              "Qty: 1",
+                                              "Qty: ${index + 1}",
                                               style: GoogleFonts.poppins(
                                                   fontSize: 12.sp,
                                                   fontWeight: FontWeight.w400,

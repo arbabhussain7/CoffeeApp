@@ -9,39 +9,29 @@ class OrderController extends GetxController {
   var orders = [].obs;
   var documentLength = [].obs;
   RxBool isLoading = false.obs;
+
   CartController cartController = Get.find<CartController>();
   PaymentsController paymentsController = Get.find<PaymentsController>();
-
   RxInt totalPrice = 0.obs;
-  // RxInt totalCoffeePrice = 0.obs;
-
   @override
   void onInit() {
     super.onInit();
     getOrdersData();
-
     print("Cart data ${cartController.carts}");
   }
 
   void addOrdersData() async {
     try {
-      // Add the order data to the 'orders' collection and capture the reference
       DocumentReference documentRef =
           await FirebaseFirestore.instance.collection("orders").add({
         'products': cartController.carts,
         'createdAt': FieldValue.serverTimestamp(),
         'status': 'pending',
-        'orderId': 'pending', // Temporarily set to 'pending'
+        'orderId': 'pending',
         'userId': FirebaseAuth.instance.currentUser!.uid,
       });
-
-      // Get the automatically generated document ID
       String documentId = documentRef.id;
-
-      // Update the 'orderId' field with the documentId
       await documentRef.update({'orderId': documentId});
-
-      // Optional: If you want to delete something based on the current user
       await FirebaseFirestore.instance
           .collection('orders')
           .where('id', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
@@ -92,6 +82,5 @@ class OrderController extends GetxController {
       print("total price ${totalPrice}");
       Get.to(() => OrderDetail(orderIndex));
     }
-    // totalCoffeePrice = totalPrice;
   }
 }

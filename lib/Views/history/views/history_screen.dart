@@ -1,5 +1,4 @@
 import 'package:coffe_app/Views/order/controller/order_controller.dart';
-import 'package:coffe_app/Views/order/views/order_detail.dart';
 import 'package:coffe_app/constant/color.dart';
 import 'package:coffe_app/widget/custom_header.dart';
 import 'package:flutter/material.dart';
@@ -42,89 +41,89 @@ class HistoryScreen extends GetView<OrderController> {
                           children: [
                             Padding(
                                 padding: EdgeInsets.only(top: 8.h),
-                                child: Container(
-                                  width: 353.w,
-                                  height: 122.h,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: blackColor.withOpacity(0.2)),
-                                      borderRadius:
-                                          BorderRadius.circular(15.r)),
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 12.w, vertical: 5.h),
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "Order ${controller.orders[0]['orderId']}",
-                                            style: GoogleFonts.poppins(
-                                                fontSize: 12.sp,
-                                                fontWeight: FontWeight.w400,
-                                                color: blackColor),
-                                          ),
-                                          Text(
-                                            "12:30 pm",
-                                            style: GoogleFonts.poppins(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    controller.calculateTotalPrice(0);
+                                  },
+                                  child: Container(
+                                    width: 373.w,
+                                    height: 122.h,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                            color: blackColor.withOpacity(0.2)),
+                                        borderRadius:
+                                            BorderRadius.circular(15.r)),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 12.w, vertical: 5.h),
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              "Order ${controller.orders[0]['orderId']}",
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: blackColor),
+                                            ),
+                                            Text(
+                                              "${controller.orders[0]['createdAt'].toDate().hour % 12 == 0 ? 12 : controller.orders[0]['createdAt'].toDate().hour % 12}:${controller.orders[0]['createdAt'].toDate().minute.toString().padLeft(2, '0')}",
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 10.sp,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: blackColor
+                                                      .withOpacity(0.53)),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              "${controller.orders.isNotEmpty ? controller.orders[0]['products'].length : 0} Items",
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: blackColor),
+                                            ),
+                                            Text(
+                                              "\$${controller.totalPrice.value}",
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 10.sp,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: brownColor),
+                                            ),
+                                          ],
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 4.w),
+                                          child: const Divider(),
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              "${controller.orders[0]['products'].map((product) => product['name']).join(', ')}",
+                                              style: GoogleFonts.poppins(
                                                 fontSize: 10.sp,
                                                 fontWeight: FontWeight.w400,
                                                 color: blackColor
-                                                    .withOpacity(0.53)),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "${controller.orders.isNotEmpty ? controller.orders[0]['products'].length : 0} Items",
-                                            style: GoogleFonts.poppins(
-                                                fontSize: 12.sp,
-                                                fontWeight: FontWeight.w400,
-                                                color: blackColor),
-                                          ),
-                                          Text(
-                                            "\$20.99",
-                                            style: GoogleFonts.poppins(
-                                                fontSize: 10.sp,
-                                                fontWeight: FontWeight.w400,
-                                                color: brownColor),
-                                          ),
-                                        ],
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 4.w),
-                                        child: const Divider(),
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            "${controller.orders[0]['products'].map((product) => product['name']).join(', ')}",
-                                            style: GoogleFonts.poppins(
-                                              fontSize: 10.sp,
-                                              fontWeight: FontWeight.w400,
-                                              color:
-                                                  blackColor.withOpacity(0.53),
+                                                    .withOpacity(0.53),
+                                              ),
                                             ),
-                                          ),
-                                          const Icon(
-                                            Icons.add_ic_call_outlined,
-                                            color: Colors.transparent,
-                                          )
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 6.h,
-                                      ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          controller.calculateTotalPrice(0);
-                                        },
-                                        child: Row(
+                                            const Icon(
+                                              Icons.add_ic_call_outlined,
+                                              color: Colors.transparent,
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 6.h,
+                                        ),
+                                        Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.end,
                                           children: [
@@ -142,12 +141,12 @@ class HistoryScreen extends GetView<OrderController> {
                                             )
                                           ],
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 )),
                             Positioned(
-                              left: 295.w,
+                              left: 310.w,
                               // top: 2.h,
                               child: Container(
                                 width: 46.w,
@@ -198,91 +197,97 @@ class HistoryScreen extends GetView<OrderController> {
                             itemBuilder: (context, index) {
                               return index == 0
                                   ? SizedBox()
-                                  : Container(
-                                      width: 353.w,
-                                      height: 122.h,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color:
-                                                  blackColor.withOpacity(0.2)),
-                                          borderRadius:
-                                              BorderRadius.circular(15.r)),
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 12.w, vertical: 5.h),
-                                      child: Column(
-                                        children: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                "Order ${controller.orders[index]['orderId']}",
-                                                style: GoogleFonts.poppins(
-                                                    fontSize: 12.sp,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: blackColor),
-                                              ),
-                                              Text(
-                                                "12:30 pm",
-                                                style: GoogleFonts.poppins(
-                                                    fontSize: 10.sp,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: blackColor
-                                                        .withOpacity(0.53)),
-                                              ),
-                                            ],
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                "${controller.orders.isNotEmpty ? controller.orders[index]['products'].length : index} Items",
-                                                style: GoogleFonts.poppins(
-                                                    fontSize: 12.sp,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: blackColor),
-                                              ),
-                                              Text(
-                                                "\$20.99",
-                                                style: GoogleFonts.poppins(
-                                                    fontSize: 10.sp,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: brownColor),
-                                              ),
-                                            ],
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 4.w),
-                                            child: const Divider(),
-                                          ),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                "${controller.orders[index]['products'].map((product) => product['name']).join(', ')}",
-                                                // "",
-                                                style: GoogleFonts.poppins(
-                                                    fontSize: 10.sp,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: blackColor
-                                                        .withOpacity(0.53)),
-                                              ),
-                                              const Icon(
-                                                Icons.add_ic_call_outlined,
-                                                color: Colors.transparent,
-                                              )
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 6.h,
-                                          ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              controller
-                                                  .calculateTotalPrice(index);
-                                            },
-                                            child: Row(
+                                  : GestureDetector(
+                                      onTap: () {
+                                        controller.calculateTotalPrice(index);
+                                      },
+                                      child: Container(
+                                        width: 353.w,
+                                        height: 122.h,
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: blackColor
+                                                    .withOpacity(0.2)),
+                                            borderRadius:
+                                                BorderRadius.circular(15.r)),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 12.w, vertical: 5.h),
+                                        child: Column(
+                                          children: [
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Order ${controller.orders[index]['orderId']}",
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: 12.sp,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      color: blackColor),
+                                                ),
+                                                Text(
+                                                  "${controller.orders[index]['createdAt'].toDate().hour % 12 == 0 ? 12 : controller.orders[index]['createdAt'].toDate().hour % 12}:${controller.orders[index]['createdAt'].toDate().minute.toString().padLeft(2, '0')}",
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: 10.sp,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      color: blackColor
+                                                          .withOpacity(0.53)),
+                                                ),
+                                              ],
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "${controller.orders.isNotEmpty ? controller.orders[index]['products'].length : index} Items",
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: 12.sp,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      color: blackColor),
+                                                ),
+                                                Text(
+                                                  "\$${controller.totalPrice.value}",
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: 10.sp,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      color: brownColor),
+                                                ),
+                                              ],
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 4.w),
+                                              child: const Divider(),
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  "${controller.orders[index]['products'].map((product) => product['name']).join(', ')}",
+                                                  // "",
+                                                  style: GoogleFonts.poppins(
+                                                      fontSize: 10.sp,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      color: blackColor
+                                                          .withOpacity(0.53)),
+                                                ),
+                                                const Icon(
+                                                  Icons.add_ic_call_outlined,
+                                                  color: Colors.transparent,
+                                                )
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 6.h,
+                                            ),
+                                            Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.end,
                                               children: [
@@ -301,8 +306,8 @@ class HistoryScreen extends GetView<OrderController> {
                                                 )
                                               ],
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     );
                             },

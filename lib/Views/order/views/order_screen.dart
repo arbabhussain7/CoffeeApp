@@ -17,7 +17,6 @@ class OrderScreen extends GetView<OrderController> {
   CartController cartController = Get.find<CartController>();
   @override
   Widget build(BuildContext context) {
-    // cartController.getCartData();
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -241,7 +240,7 @@ class OrderScreen extends GetView<OrderController> {
                     ),
                     Obx(
                       () => Text(
-                        "\$${controller.totalPrice.value}",
+                        "\$${controller.cartController.totalPrice.value}",
                         style: GoogleFonts.poppins(
                             fontSize: 16.sp,
                             fontWeight: FontWeight.w400,
@@ -404,38 +403,38 @@ class OrderScreen extends GetView<OrderController> {
                           controller.addOrdersData();
                           print("object ...... ");
 
-                          // final message = SnackBar(
-                          //   backgroundColor: whiteColor,
-                          //   content: Container(
-                          //     width: 378.w,
-                          //     height: 63.h,
-                          //     padding: EdgeInsets.symmetric(horizontal: 12.w),
-                          //     decoration: BoxDecoration(
-                          //         borderRadius: BorderRadius.circular(15.r),
-                          //         color: primaryColor),
-                          //     child: Row(
-                          //       children: [
-                          //         SvgIcon(
-                          //           "assets/icons/check-icon.svg",
-                          //           color: whiteColor,
-                          //           width: 20.w,
-                          //           height: 20.h,
-                          //         ),
-                          //         SizedBox(
-                          //           width: 6.w,
-                          //         ),
-                          //         Text(
-                          //           "Order Placed Successfully! ",
-                          //           style: GoogleFonts.poppins(
-                          //               fontSize: 16.sp,
-                          //               fontWeight: FontWeight.w400,
-                          //               color: whiteColor),
-                          //         )
-                          //       ],
-                          //     ),
-                          //   ),
-                          // );
-                          // ScaffoldMessenger.of(context).showSnackBar(message);
+                          final message = SnackBar(
+                            backgroundColor: whiteColor,
+                            content: Container(
+                              width: 378.w,
+                              height: 63.h,
+                              padding: EdgeInsets.symmetric(horizontal: 12.w),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15.r),
+                                  color: primaryColor),
+                              child: Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    "assets/icons/check-icon.svg",
+                                    color: whiteColor,
+                                    width: 20.w,
+                                    height: 20.h,
+                                  ),
+                                  SizedBox(
+                                    width: 6.w,
+                                  ),
+                                  Text(
+                                    "Order Placed Successfully! ",
+                                    style: GoogleFonts.poppins(
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.w400,
+                                        color: whiteColor),
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(message);
                         }))
               ],
             ),

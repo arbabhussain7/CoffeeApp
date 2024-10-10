@@ -14,18 +14,16 @@ class CustomHeading extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-          width: 31.w,
-          padding: const EdgeInsets.all(2),
-          height: 31.h,
-          decoration: BoxDecoration(
-              color: whiteColor,
-              border: Border.all(color: blackColor.withOpacity(0.2)),
-              borderRadius: BorderRadius.circular(5.r)),
-          child: GestureDetector(
-            onTap: () {
-              Get.back();
-            },
+        GestureDetector(
+          onTap: Get.back,
+          child: Container(
+            width: 31.w,
+            padding: const EdgeInsets.all(2),
+            height: 31.h,
+            decoration: BoxDecoration(
+                color: whiteColor,
+                border: Border.all(color: blackColor.withOpacity(0.2)),
+                borderRadius: BorderRadius.circular(5.r)),
             child: SvgPicture.asset(
               "assets/icons/back-arrow-icon.svg",
               width: 12.w,

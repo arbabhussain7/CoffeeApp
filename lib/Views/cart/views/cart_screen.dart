@@ -1,3 +1,4 @@
+import 'package:coffe_app/Views/cart/controller/cart_controller.dart';
 import 'package:coffe_app/constant/color.dart';
 import 'package:coffe_app/widget/custom_heading.dart';
 import 'package:flutter/material.dart';
@@ -6,11 +7,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends GetView<CartController> {
   const CartScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // controller.calculateTotalPrice();
     return Scaffold(
       body: SafeArea(
           child: Padding(
@@ -29,116 +31,131 @@ class CartScreen extends StatelessWidget {
           ),
           SizedBox(
             height: 342.h,
-            child: ListView.separated(
-              itemCount: 3,
-              itemBuilder: (context, index) {
-                return Container(
-                  width: 353.w,
-                  height: 103.h,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: blackColor.withOpacity(0.2),
+            child: Obx(
+              () =>
+                  // controller.carts.isEmpty
+                  //     ? Center(
+                  //         child: Text(
+                  //           "Carts are Empty",
+                  //           style: GoogleFonts.poppins(
+                  //               fontSize: 16.sp,
+                  //               fontWeight: FontWeight.w700,
+                  //               color: blackColor),
+                  //         ),
+                  //       )
+                  //     :
+                  ListView.separated(
+                itemCount: controller.carts.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    width: 353.w,
+                    height: 103.h,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: blackColor.withOpacity(0.2),
+                      ),
+                      borderRadius: BorderRadius.circular(15.r),
                     ),
-                    borderRadius: BorderRadius.circular(15.r),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 3.w),
-                    child: Row(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(15.r),
-                          child: Image.asset(
-                            "assets/images/icrem-coffe-img.png",
-                            height: 94.h,
-                            width: 100.w,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 3.w),
+                      child: Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(15.r),
+                            child: Image.network(
+                              fit: BoxFit.cover,
+                              controller.carts[index]['coffee_img'],
+                              height: 94.h,
+                              width: 100.w,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 15.w,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Salted Caramel Latte ",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.w400,
-                                  color: blackColor),
-                            ),
-                            Text(
-                              "Cold brew and slightly, \nsweetened ",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 10.sp,
-                                  fontWeight: FontWeight.w400,
-                                  color: blackColor.withOpacity(0.53)),
-                            ),
-                            SizedBox(
-                              height: 12.h,
-                            ),
-                            Container(
-                              width: 59.w,
-                              height: 23.h,
-                              padding: EdgeInsets.symmetric(horizontal: 6.w),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10.r),
-                                  color: blackColor.withOpacity(0.1)),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Icon(
-                                    Icons.remove,
-                                    size: 10.sp,
-                                    color: blackColor,
-                                  ),
-                                  Text(
-                                    "1",
-                                    style: GoogleFonts.poppins(
-                                        fontSize: 10.sp,
-                                        fontWeight: FontWeight.w400,
-                                        color: blackColor),
-                                  ),
-                                  Icon(
-                                    Icons.add,
-                                    size: 10.sp,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          width: 82.w,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 6.h),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          SizedBox(
+                            width: 15.w,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Icon(
-                                Icons.add,
-                                color: Colors.transparent,
-                              ),
                               Text(
-                                "\$10",
+                                controller.carts[index]['name'].toString(),
                                 style: GoogleFonts.poppins(
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.w400,
-                                    color: brownColor),
-                              )
+                                    color: blackColor),
+                              ),
+                              Text(
+                                "Cold brew and slightly, \nsweetened ",
+                                style: GoogleFonts.poppins(
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.w400,
+                                    color: blackColor.withOpacity(0.53)),
+                              ),
+                              SizedBox(
+                                height: 12.h,
+                              ),
+                              Container(
+                                width: 59.w,
+                                height: 23.h,
+                                padding: EdgeInsets.symmetric(horizontal: 6.w),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.r),
+                                    color: blackColor.withOpacity(0.1)),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Icon(
+                                      Icons.remove,
+                                      size: 10.sp,
+                                      color: blackColor,
+                                    ),
+                                    Text(
+                                      "1",
+                                      style: GoogleFonts.poppins(
+                                          fontSize: 10.sp,
+                                          fontWeight: FontWeight.w400,
+                                          color: blackColor),
+                                    ),
+                                    Icon(
+                                      Icons.add,
+                                      size: 10.sp,
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
-                        )
-                      ],
+                          SizedBox(
+                            width: 82.w,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 6.h),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Icon(
+                                  Icons.add,
+                                  color: Colors.transparent,
+                                ),
+                                Text(
+                                  "\$${controller.carts[index]['coffee_price'].toString()}",
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w400,
+                                      color: brownColor),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              },
-              separatorBuilder: (context, index) {
-                return SizedBox(height: 15.h);
-              },
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return SizedBox(height: 15.h);
+                },
+              ),
             ),
           ),
           SizedBox(
@@ -154,12 +171,24 @@ class CartScreen extends StatelessWidget {
               SizedBox(
                 height: 12.h,
               ),
-              Text(
-                "Subtotal: \$32.99",
-                style: GoogleFonts.poppins(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w400,
-                    color: blackColor),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    "SubTotal: ",
+                    style: GoogleFonts.poppins(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w400,
+                        color: blackColor),
+                  ),
+                  Text(
+                    "\$${controller.totalPrice.value.toString()}",
+                    style: GoogleFonts.poppins(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w400,
+                        color: blackColor),
+                  ),
+                ],
               ),
               SizedBox(
                 height: 12.h,
@@ -233,7 +262,7 @@ class CartScreen extends StatelessWidget {
                                                     .withOpacity(0.82))),
                                         child: ElevatedButton(
                                           onPressed: () {
-                                            Get.back();
+                                            // controller.deleteAllDocuments();
                                           },
                                           style: ElevatedButton.styleFrom(
                                               backgroundColor: redColor),
