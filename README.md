@@ -1,5 +1,6 @@
 # Coffee Ordering App
 
+
 The Coffee Order App allows users to browse and buy different coffee flavors while providing a seamless payment experience through Stripe. Users can also share their favorite coffee flavors with friends using dynamic links. Additionally, the app includes a points-based reward system, where users earn points for purchases and can redeem them for free coffee.
 
 
