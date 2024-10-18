@@ -18,6 +18,7 @@ The Coffee Order App allows users to browse and buy different coffee flavors whi
 
 ## Technologies Used
 
+
 - **Flutter**: Cross-platform mobile app framework.
 - **Dart**: Programming language for Flutter.
 - **Stripe API**: Payment gateway integration.
