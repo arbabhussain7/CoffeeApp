@@ -1,3 +1,22 @@
+<p>
+<img src="https://github.com/user-attachments/assets/04724e09-1e87-4963-8fea-48f530a729e6" alt="Image 1" style="margin-right: 10px; margin-bottom: 10px;" width="30%"> 
+ <img src="https://github.com/user-attachments/assets/b595b60e-b7bb-4dfd-8c19-cf585d508626" alt="Image 1" style="margin-right: 10px; margin-bottom: 10px;" width="30%"> 
+ <img src="https://github.com/user-attachments/assets/e1078f4f-8cfe-4350-98cb-73a96242358b" alt="Image 1" style="margin-right: 10px; margin-bottom: 10px;"width="30%"> 
+  </p>
+<p>
+<img src="https://github.com/user-attachments/assets/7275cd6d-b9f0-4eea-b690-8edfd7074a81" alt="Image 1" style="margin-right: 10px; margin-bottom: 10px;" width="30%"> 
+ <img src="https://github.com/user-attachments/assets/4fd2300e-136d-4279-90a1-f7f5477f1808" alt="Image 1" style="margin-right: 10px; margin-bottom: 10px;" width="30%"> 
+ <img src="https://github.com/user-attachments/assets/d7ea4acb-6b71-40f0-8213-6eb53c1ddeb6" alt="Image 1" style="margin-right: 10px; margin-bottom: 10px;"width="30%"> 
+  </p>
+<p>
+<img src="https://github.com/user-attachments/assets/38e1a3a6-8edd-4053-b850-e2b0a9ec6576" alt="Image 1" style="margin-right: 10px; margin-bottom: 10px;" width="30%"> 
+ <img src="https://github.com/user-attachments/assets/b015a3c1-6bfc-4f41-8b0c-c174b106c966" alt="Image 1" style="margin-right: 10px; margin-bottom: 10px;" width="30%"> 
+ <img src="https://github.com/user-attachments/assets/4490587d-16c0-42f3-ad69-23143ded9de1" alt="Image 1" style="margin-right: 10px; margin-bottom: 10px;"width="30%"> 
+  </p>
+
+
+
+
 # Coffee Ordering App
 
 
